@@ -20,7 +20,7 @@ const Mensagem = () => {
             <div className="p-3 w-100">
                 <Header
                     goto={'/home'}
-                    title={'Mensagem'}
+                    title={'Pendentes'}
                     logo={logo}
                 />
                 <section className="p-2 m-2 shadow-lg">
