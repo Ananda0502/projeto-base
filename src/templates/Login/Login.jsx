@@ -26,13 +26,8 @@ const Login = () => {
                     <input type="email" id="email" className="form-control text-center fw-medium shadow" />
                 </div>
                 <div>
-                    <label htmlFor="password" className="form-label mb-0 fw-bold">Senha:</label>
+                    <label htmlFor="password" className="form-label mb-0 fw-bold">RM:</label>
                     <input type="password" id="password" className="form-control text-center fw-medium shadow" />
-                </div>
-                <div className="d-flex flex-row-reverse mt-1">
-                    <p className="fw-bold fst-italic opacity-75 me-1">Esqueceu a senha?
-                        <Link to={'/forgotpass'}> Clique aqui.</Link>
-                    </p>
                 </div>
                 <div className="d-flex justify-content-center my-1 d-none" id="infos">
                     <p className="fw-bold fst-italic text-danger">
