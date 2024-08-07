@@ -24,25 +24,20 @@ const Mensagem = () => {
                     logo={logo}
                 />
                 <section className="p-2 m-2 shadow-lg">
-                    <div className="table-wrapper">
+                <div className="table-wrapper">
                         <table className="table table-striped table-hover">
                             <thead>
                                 <tr>
                                     <th scope="col">ID</th>
                                     <th scope="col">Data</th>
-                                    <th scope="col">Emissor</th>
-                                    <th scope="col">Email</th>
-                                    <th scope="col">Status</th>
-                                    <th scope="col">Abrir</th>
+                                    <th scope="col">Hora</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
                                     <td scope="row">1</td>
-                                    <td>Mark</td>
-                                    <td>Otto</td>
-                                    <td>@mdo</td>
-                                    <td>@mdo</td>
+                                    <td>10/10</td>
+                                    <td>13:20</td>
                                     <td>
                                         <button type="button" onClick={() => goTo()}
                                                 className="btn btn-sm btn-warning">
@@ -54,6 +49,36 @@ const Mensagem = () => {
                             </tbody>
                         </table>
                     </div>
+
+                    <hr/>
+
+                    <div className="table-wrapper">
+                        <table className="table table-striped table-hover">
+                            <thead>
+                                <tr>
+                                    <th scope="col">ID</th>
+                                    <th scope="col">Data</th>
+                                    <th scope="col">Hora</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td scope="row">2</td>
+                                    <td>05/10</td>
+                                    <td>16:45</td>
+                                    <td>
+                                        <button type="button" onClick={() => goTo()}
+                                                className="btn btn-sm btn-warning">
+                                            <i className="bi bi-envelope-open me-2"></i>Abrir
+                                        </button>
+                                    </td>
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+
                 </section>
             </div>
         </div>
