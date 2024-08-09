@@ -14,7 +14,7 @@ const Home = () => {
                     title={'Home'}
                     logo={logo}
                     />
-                <h2>Conteúdo Home</h2>
+                <h1 id="saudacoes"> BEM VINDO AO OPS! </h1>
            </div>
         </div>
     )
