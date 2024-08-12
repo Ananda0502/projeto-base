@@ -1,20 +1,27 @@
 .sidebar{
     width: 200px;
     height: 100vh;
-    border: solid rgb(68, 0, 255) 1px;
+    border: solid rgb(0, 0, 0) 1px;
     border-radius: 10px;
+    background-color: white;
   }
   
   .sidebar a{
     padding: 20px 10px;
+    color:black
     
   }
   
+
+  #navhome a:hover { background-color: white; color:#0B112B; }
+  #navpendentes a:hover{ background-color: #7B0000; color:#ffffff;}
+  #navsolucionadas a:hover{ background-color: #0B2B0E; color:#ffffff;}
+
   .sidebar a:hover {
     font-size: 18px;
     font-weight: bold;
-    border: solid rgb(68, 0, 255) 1px;
-    background-color: rgb(206, 199, 250);
+
+    background-color: #0B112B;
     border-radius: 10px;
     text-align: center;
     margin: 2px;
