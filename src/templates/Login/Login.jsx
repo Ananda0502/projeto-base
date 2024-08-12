@@ -22,7 +22,7 @@ const Login = () => {
                     <img src={logo} alt="logo" />
                 </div>
                 <div className="mb-3">
-                    <label htmlFor="email" className="form-label mb-0 fw-bold">RM:</label>
+                    <label htmlFor="email" className="form-label mb-0 fw-bold" >RM:</label>
                     <input type="email" id="email" className="form-control text-center fw-medium shadow" />
                 </div>
                 <div>
