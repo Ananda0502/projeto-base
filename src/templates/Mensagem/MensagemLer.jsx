@@ -11,7 +11,7 @@ const MensagemLer = () => {
             <div className="p-3 w-100">
                 <Header
                     goto={'/mensagem'}
-                    title={'Ler Mensagem'}
+                    title={'Pendentes'}
                     logo={logo}
                 />
                 <section className="m-2 p-2 shadow-lg">
@@ -32,32 +32,25 @@ const MensagemLer = () => {
                                 <input type="text" className="form-control" id="inputStatus" readOnly />
                             </div>
                         </div>
-                        <div className="row mb-1">
-                            <label htmlFor="inputEmissor" className="col-md-2 col-form-label">Emissor:</label>
-                            <div class="col-md-10">
-                                <input type="text" className="form-control" id="inputEmissor" readOnly />
-                            </div>
-                        </div>
+                       
                         <div className="row mb-3">
-                            <label htmlFor="inputEmail" className="col-md-2 col-form-label">Email:</label>
+                            <label htmlFor="inputEmail" className="col-md-2 col-form-label">RM:</label>
                             <div class="col-md-10">
                                 <input type="email" className="form-control" id="inputEmail" readOnly />
                             </div>
                         </div>
 
                         <div className="col-md-12 mb-2">
-                            <label htmlFor="inputTexto" className="form-label">Mensagem:</label>
+                            <label htmlFor="inputTexto" className="form-label">Descrição:</label>
                             <textarea rows={5} className="form-control" id="inputTexto" >
                                 </textarea>
                         </div>
                         
 
                         <div className="col-12 d-flex justify-content-around">
-                            <button type="submit" className="btn btn-warning">
-                                Marcar com Lida
-                            </button>
-                            <button type="submit" className="btn btn-danger">
-                                Inativar
+                          
+                            <button type="submit" className="btn btn-danger" id="marcar">
+                                Marcar como <br/>solucionada
                             </button>
                         </div>
                     </form>
