@@ -12,9 +12,9 @@ const Sidebar = () => {
             </div>
 
             <nav className="nav flex-column">
-                <Link className="nav-link" aria-current="page" to={'/home'}>Home</Link>
-                <Link className="nav-link" to={'/mensagem'}>Pendentes</Link>
-                <Link className="nav-link" to={'/usuario'}>Solucionadas</Link>
+                <div id="navhome"> <Link className="nav-link" aria-current="page" to={'/home'}>Home</Link> </div>
+                <div id="navpendentes"> <Link className="nav-link" to={'/mensagem'} id="navpendentes">Pendentes</Link> </div>
+                <div id="navsolucionadas"> <Link className="nav-link" to={'/usuario'} id="navsolucionadas">Solucionadas</Link> </div>
             </nav>
         </div>
     )
