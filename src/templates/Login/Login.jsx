@@ -22,11 +22,11 @@ const Login = () => {
                     <img src={logo} alt="logo" />
                 </div>
                 <div className="mb-3">
-                    <label htmlFor="email" className="form-label mb-0 fw-bold">Email:</label>
+                    <label htmlFor="email" className="form-label mb-0 fw-bold">RM:</label>
                     <input type="email" id="email" className="form-control text-center fw-medium shadow" />
                 </div>
                 <div>
-                    <label htmlFor="password" className="form-label mb-0 fw-bold">RM:</label>
+                    <label htmlFor="password" className="form-label mb-0 fw-bold">Senha:</label>
                     <input type="password" id="password" className="form-control text-center fw-medium shadow" />
                 </div>
                 <div className="d-flex justify-content-center my-1 d-none" id="infos">
