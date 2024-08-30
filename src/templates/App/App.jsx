@@ -6,6 +6,9 @@ function App() {
   const [count, setCount] = useState(0)
 
   return (
+    <div className='corpo'> 
+
+    
     <div className='container' id="container">
       <nav className="navbar navbar-expand-lg menu">
         <div className="container-fluid">
@@ -38,6 +41,7 @@ function App() {
           Acesso Restrito
         </Link>
       </footer>
+    </div>
     </div>
   )
 }
