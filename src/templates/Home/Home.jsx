@@ -6,7 +6,7 @@ import logo from '../../assets/images/home.png'
 const Home = () => {
 
     return (
-        <div className="d-flex">
+        <div className=" corpo d-flex">
            <Sidebar />
            <div className="p-3 w-100">
                 <Header 
@@ -14,7 +14,7 @@ const Home = () => {
                     title={'Home'}
                     logo={logo}
                     />
-                <h1 id="saudacoes"> BEM VINDO AO OPS! </h1>
+                <h1 id="saudacoes"> BEM VINDO AO SISTEMA! </h1>
            </div>
         </div>
     )

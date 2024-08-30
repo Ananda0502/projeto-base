@@ -15,7 +15,7 @@ const Mensagem = () => {
         console.log("ID:", id);
     }
     return (
-        <div className="d-flex">
+        <div className=" corpo d-flex">
             <Sidebar />
             <div className="p-3 w-100">
                 <Header

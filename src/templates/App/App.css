@@ -1,5 +1,5 @@
 footer{
-    background-color: antiquewhite;
+    background-color: rgb(107, 63, 6);
     padding: 10px;
     text-align: center;
 }
@@ -10,5 +10,9 @@ footer{
  
  .menu a {
      color: aqua;
+ }
+
+ .corpo {
+    background-color: #0b112b;
  }
 

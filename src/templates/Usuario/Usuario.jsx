@@ -6,7 +6,7 @@ import logo from '../../assets/images/home.png'
 const Usuario = () => {
 
     return (
-        <div className="d-flex">
+        <div className=" corpo d-flex">
            <Sidebar />
            <div className="p-3 w-100">
            <Header 
