@@ -37,7 +37,7 @@ function App() {
    
       <footer>
         <Link to={'/login'}
-          className='btn btn-sm btn-warning'>
+          id="botaon"className='btn btn-sm btn-warning'>
           Acesso Restrito
         </Link>
       </footer>
