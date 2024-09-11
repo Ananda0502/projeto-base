@@ -45,24 +45,13 @@ const UsuariosLista = () => {
                         <table className="table table-striped table-hover">
                             <thead>
                                 <tr>
-                                    <th scope="col">ID</th>
-                                    <th scope="col">Nome</th>
-                                    <th scope="col">Email</th>
-                                    <th scope="col">Acesso</th>
-                                    <th scope="col">Cadastro</th>
-                                    <th scope="col">Status</th>
-                                    <th scope="col">Abrir</th>
+                                    <th scope="col">ID LABORATÓRIO:</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 {usuarios?.map((usuario) => (
-                                    <tr className="" key={usuario.id}>
+                                    <tr className="" key={usuario.idlab}>
                                         <td>{usuario.id}</td>
-                                        <td>{usuario.nome}</td>
-                                        <td>{usuario.email}</td>
-                                        <td>{usuario.nivelAcesso}</td>
-                                        <td>{usuario.dataCadastro}</td>
-                                        <td>{usuario.statusUsuario}</td>
                                         <td>
                                             <button onClick={() => getId(usuario.id)}
                                                 className="btn btn-sm btn-warning rounded">
