@@ -8,6 +8,9 @@ import Login from "../templates/Login/Login"
 import Mensagem from "../templates/Mensagem/Mensagem"
 import MensagemLer from "../templates/Mensagem/MensagemLer"
 
+import OcorrenciaSolucionada from "../templates/Solucionadas/OcorrenciaSolucionada"
+import SolucionadaLer from "../templates/Solucionadas/SolucionadaLer"
+
 import Usuario from "../templates/Usuario/Usuario"
 import UsuarioEditar from "../templates/Usuario/UsuarioEditar"
 import UsuarioNovo from "../templates/Usuario/UsuarioNovo"
@@ -24,6 +27,9 @@ const AppRoutes = () => {
 
         <Route path="/mensagem" element={<Mensagem />} />
         <Route path="/mensagemler" element={<MensagemLer />} />
+
+        <Route path="/ocorrenciaSolucionada" element={<OcorrenciaSolucionada />} />
+        <Route path="/solucionadaLer" element={<SolucionadaLer />} />
 
         <Route path="/usuario" element={<Usuario />} />
         <Route path="/usuarioslista" element={<UsuariosLista />} />
