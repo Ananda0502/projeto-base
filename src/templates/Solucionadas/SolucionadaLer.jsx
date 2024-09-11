@@ -3,18 +3,18 @@ import Header from "../../components/Header/Header"
 import Sidebar from '../../components/Menu/Sidebar'
 import logo from '../../assets/images/home.png'
 
-const MensagemLer = () => {
+const SolucionadaLer = () => {
 
     return (
-        <div className="corpo d-flex">
+        <div className="d-flex">
             <Sidebar />
             <div className="p-3 w-100">
                 <Header
-                    goto={'/mensagem'}
+                    goto={'/solucionadaLer'}
                     title={'Pendentes'}
                     logo={logo}
                 />
-                <section className="fundo m-2 p-2 shadow-lg">
+                <section className="m-2 p-2 shadow-lg">
                     <form className="mx-5 p-2 border">
                         <div className="row my-3 g-1">
                             <label htmlFor="inputID" className="col-md-1 col-form-label">ID:</label>
@@ -60,4 +60,4 @@ const MensagemLer = () => {
     )
 }
 
-export default MensagemLer
+export default SolucionadaLer
