@@ -15,7 +15,9 @@
 
   #navhome a:hover { background-color: white; color:#0B112B; }
   #navpendentes a:hover{ background-color: #7B0000; color:#ffffff;}
+  #navlaboratorios a:hover{ background-color: #D9D9D9; color:#000000;}
   #navsolucionadas a:hover{ background-color: #0B2B0E; color:#ffffff;}
+
 
   .sidebar a:hover {
     font-size: 18px;

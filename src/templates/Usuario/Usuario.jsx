@@ -11,18 +11,18 @@ const Usuario = () => {
            <div className="p-3 w-100">
            <Header 
                     goto={'/home'}
-                    title={'Usuário'}
+                    title={'Laboratórios'}
                     logo={logo}
                     />
                <section className="m-2 p-2 shadow-lg">
                     <div className="d-flex justify-content-around">
                         <Link to={'/usuarionovo'} 
                             className="btn btn-lg btn-primary">
-                            Novo Usuário
+                            Novo Laboratório
                         </Link>
                         <Link to={'/usuarioslista'} 
                             className="btn btn-lg btn-warning">
-                            Lista de Usuários
+                            Lista de Laboratórios
                         </Link>
                     </div>
                 </section>

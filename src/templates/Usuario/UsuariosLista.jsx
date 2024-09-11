@@ -37,7 +37,7 @@ const UsuariosLista = () => {
             <div className="p-3 w-100">
                 <Header
                     goto={'/usuario'}
-                    title={'Lista de Usuários'}
+                    title={'Lista de Laboratórios'}
                     logo={logo}
                 />
                 <section className="m-2 p-2 shadow-lg">
