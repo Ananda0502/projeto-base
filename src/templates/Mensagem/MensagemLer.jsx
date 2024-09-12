@@ -11,7 +11,7 @@ const MensagemLer = () => {
             <div className="p-3 w-100">
                 <Header
                     goto={'/mensagem'}
-                    title={'Pendentes'}
+                    title={'Informações da Ocorrência'}
                     logo={logo}
                 />
                 <section className="fundo m-2 p-2 shadow-lg">

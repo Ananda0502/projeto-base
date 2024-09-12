@@ -31,6 +31,7 @@ const Mensagem = () => {
                                     <th scope="col">ID</th>
                                     <th scope="col">Data</th>
                                     <th scope="col">Hora</th>
+                                    <th scope="col">Visualizar </th>
                                 </tr>
                             </thead>
                             <tbody>
