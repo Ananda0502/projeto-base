@@ -33,6 +33,7 @@ const OcorrenciaSolucionada = () => {
                                 <tr>
                                     <th scope="col">ID</th>
                                     <th scope="col">Data</th>
+                                    <th scope="col">Manutenção</th>
                                     <th scope="col">Hora</th>
                                     <th scope="col">Visualizar </th>
                                 </tr>
@@ -40,8 +41,9 @@ const OcorrenciaSolucionada = () => {
                             <tbody>
                                 <tr>
                                     <td scope="row">1</td>
-                                    <td>10/10</td>
-                                    <td>13:20</td>
+                                    <td>10/09</td>
+                                    <td>11/10</td>
+                                    <td>09:12</td>
                                     <td>
                                         <button type="button" onClick={() => goTo()}
                                                 className="btn btn-sm btn-warning">
@@ -55,6 +57,7 @@ const OcorrenciaSolucionada = () => {
                                <tr>
                                    <td scope="row">2</td>
                                    <td>05/10</td>
+                                   <td>10/10</td>
                                    <td> 16:45</td>
                                    <td>
                                        <button type="button" onClick={() => goTo()}

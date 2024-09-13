@@ -6,7 +6,7 @@ import logo from '../../assets/images/home.png'
 const SolucionadaLer = () => {
 
     return (
-        <div className="d-flex">
+        <div className="corpo d-flex">
             <Sidebar />
             <div className="p-3 w-100">
                 <Header
@@ -14,7 +14,7 @@ const SolucionadaLer = () => {
                     title={'Informações da Ocorrência'}
                     logo={logo}
                 />
-                <section className="m-2 p-2 shadow-lg">
+                <section className="fundo m-2 p-2 shadow-lg">
                     <form className="mx-5 p-2 border">
                         <div className="row my-3 g-1">
                             <label htmlFor="inputID" className="col-md-1 col-form-label">ID:</label>
@@ -25,6 +25,11 @@ const SolucionadaLer = () => {
                             <label htmlFor="inputData" className="col-md-2 col-form-label">Data:</label>
                             <div class="col-md-3">
                                 <input type="text" className="form-control" id="inputData" readOnly />
+                            </div>
+
+                            <label htmlFor="inputDataManutencao" className="col-md-2 col-form-label">Data da Manunteçao:</label>
+                            <div class="col-md-2">
+                                <input type="text" className="form-control" id="inputDataManutencao" readOnly />
                             </div>
 
                             <label htmlFor="inputStatus" className="col-md-2 col-form-label">Status:</label>
@@ -40,7 +45,7 @@ const SolucionadaLer = () => {
                             </div>
                         </div>
 
-                        <div className="col-md-12 mb-2">
+                        <div className="bordacaixa col-md-12 mb-2">
                             <label htmlFor="inputTexto" className="form-label">Descrição:</label>
                             <textarea rows={5} className="form-control" id="inputTexto" >
                                 </textarea>
@@ -49,9 +54,7 @@ const SolucionadaLer = () => {
 
                         <div className="col-12 d-flex justify-content-around">
                           
-                            <button type="submit" className="btn btn-danger" id="marcar">
-                                Marcar como <br/>solucionada
-                            </button>
+            
                         </div>
                     </form>
                 </section>

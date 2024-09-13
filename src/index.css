@@ -49,3 +49,8 @@ border-color: #D9D9D9;}
 #botaovoltar{border-color: #D9D9D9;}
 
 #inputTexto{border-color: #000000;}
+#inputEmail{border-color: #000;}
+#inputStatus{border-color: #000;}
+#inputData{border-color: #000;}
+#inputID{border-color: #000;}
+#inputDataManutencao{border-color: #0B2B0E; background-color: rgba(12, 45, 15, 0.3)}

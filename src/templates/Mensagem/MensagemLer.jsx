@@ -42,7 +42,7 @@ const MensagemLer = () => {
 
                         <div className="col-md-12 mb-2">
                             <label htmlFor="inputTexto" className="form-label">Descrição:</label>
-                            <textarea rows={5} className="form-control" id="inputTexto " >
+                            <textarea rows={5} className="form-control" id="inputTexto" >
                                 </textarea>
                         </div>
                         
