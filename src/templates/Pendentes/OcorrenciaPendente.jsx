@@ -3,12 +3,12 @@ import Header from "../../components/Header/Header"
 import Sidebar from '../../components/Menu/Sidebar'
 import logo from '../../assets/images/home.png'
 
-const Mensagem = () => {
+const ocorrenciaPendente = () => {
 
     const navigate = useNavigate();
 
     const goTo = () => {
-        navigate('/mensagemler')
+        navigate('/pendenteLer')
     }
 
     const getId = (id) => {
@@ -77,4 +77,4 @@ const Mensagem = () => {
     )
 }
 
-export default Mensagem
+export default ocorrenciaPendente

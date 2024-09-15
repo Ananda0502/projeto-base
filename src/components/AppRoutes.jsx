@@ -5,8 +5,8 @@ import Home from "../templates/Home/Home"
 import ForgotPass from "../templates/Login/ForgotPass"
 import Login from "../templates/Login/Login"
 
-import Mensagem from "../templates/Mensagem/Mensagem"
-import MensagemLer from "../templates/Mensagem/MensagemLer"
+import OcorrenciaPendente from "../templates/Pendentes/OcorrenciaPendente"
+import PendenteLer from "../templates/Pendentes/PendenteLer"
 
 import OcorrenciaSolucionada from "../templates/Solucionadas/OcorrenciaSolucionada"
 import SolucionadaLer from "../templates/Solucionadas/SolucionadaLer"
@@ -25,8 +25,8 @@ const AppRoutes = () => {
         <Route path="/login" element={<Login />} />
         <Route path="/forgotpass" element={<ForgotPass />} />
 
-        <Route path="/mensagem" element={<Mensagem />} />
-        <Route path="/mensagemler" element={<MensagemLer />} />
+        <Route path="/ocorrenciaPendente" element={<OcorrenciaPendente />} />
+        <Route path="/pendenteLer" element={<PendenteLer />} />
 
         <Route path="/ocorrenciaSolucionada" element={<OcorrenciaSolucionada />} />
         <Route path="/solucionadaLer" element={<SolucionadaLer />} />

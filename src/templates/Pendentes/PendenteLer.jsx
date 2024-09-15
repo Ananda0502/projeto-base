@@ -3,14 +3,14 @@ import Header from "../../components/Header/Header"
 import Sidebar from '../../components/Menu/Sidebar'
 import logo from '../../assets/images/home.png'
 
-const MensagemLer = () => {
+const PendeteLer = () => {
 
     return (
         <div className="corpo d-flex">
             <Sidebar />
             <div className="p-3 w-100">
                 <Header
-                    goto={'/mensagem'}
+                    goto={'/ocorrenciaPendente'}
                     title={'Informações da Ocorrência'}
                     logo={logo}
                 />
@@ -60,4 +60,4 @@ const MensagemLer = () => {
     )
 }
 
-export default MensagemLer
+export default PendeteLer
