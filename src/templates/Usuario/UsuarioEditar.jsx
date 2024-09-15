@@ -36,49 +36,36 @@ const UsuarioEditar = () => {
                 />
                 <section className="m-2 p-2 shadow-lg">
                     <form className="row g-3">
-                        <div className="col-md-2">
-                            <label htmlFor="inputID" className="form-label">ID</label>
-                            <input type="text" className="form-control" id="inputID" readOnly 
-                                value={usuario.id} />
-                        </div>
-                        <div className="col-md-5">
-                            <label htmlFor="inputNome" className="form-label">Nome</label>
-                            <input type="text" className="form-control" id="inputNome"  
-                                value={usuario.nome} />
-                        </div>
-                        <div className="col-md-5">
-                            <label htmlFor="inputEmail4" className="form-label">Email</label>
-                            <input type="email" className="form-control" id="inputEmail4"  
-                                value={usuario.email} />
-                        </div>
-
-                        <div className="col-md-4">
-                            <label htmlFor="inputData" className="form-label">Data de Cadastro</label>
-                            <input type="text" className="form-control" id="inputData" readOnly  
-                                value={usuario.dataCadastro} />
-                        </div>
-                        <div className="col-md-4">
-                            <label htmlFor="inputStatus" className="form-label">Status</label>
-                            <input type="text" className="form-control" id="inputStatus" readOnly  
-                                value={usuario.statusUsuario} />
-                        </div>
-                        <div className="col-md-4">
-                            <label htmlFor="inputAcesso" className="form-label">Acesso</label>
+                        
+                    <div className="col-md-2">
+                            <label htmlFor="inputAcesso" id="lab" className="form-label">Escolha a Sala</label>
                             <select id="inputAcesso" className="form-select">
-                                <option selected>Nível de Acesso</option>
-                                <option>...</option>
+                                <option selected>Laboratórios</option>
+                                <option>sala 01</option>
+                                <option>sala 02</option>
+                                <option>sala 03</option>
+                                <option>sala 04</option>
+                            </select>
+                        </div>
+                       
+                        <div className="col-md-2">
+                            <label htmlFor="inputAcesso" id="andar" className="form-label">Escolha o Andar</label>
+                            <select id="inputAcesso" className="form-select">
+                                <option selected>Andares</option>
+                                <option>1°andar</option>
+                                <option>2°andar </option>
+                                <option>3°andar</option>
+                                <option>4°andar</option>
                             </select>
                         </div>
                         
                         <div className="col-12 d-flex justify-content-between">
                             <button type="submit" className="btn btn-primary">
-                                Gravar Alterações
+                                Salvar Alterações
                             </button>
-                            <button type="button" className="btn btn-warning">
-                                Reativar / Resetar a Senha
-                            </button>
+
                             <button type="button" className="btn btn-danger">
-                                Inativar Conta
+                                Excluir Laboratório
                             </button>
                         </div>
                     </form>

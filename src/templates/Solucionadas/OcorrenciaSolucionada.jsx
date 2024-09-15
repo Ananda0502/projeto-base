@@ -41,8 +41,8 @@ const OcorrenciaSolucionada = () => {
                             <tbody>
                                 <tr>
                                     <td scope="row">1</td>
-                                    <td>10/09</td>
-                                    <td>11/10</td>
+                                    <td>10/09/2024</td>
+                                    <td>11/10/2024</td>
                                     <td>09:12</td>
                                     <td>
                                         <button type="button" onClick={() => goTo()}
@@ -56,8 +56,8 @@ const OcorrenciaSolucionada = () => {
                             <tbody>
                                <tr>
                                    <td scope="row">2</td>
-                                   <td>05/10</td>
-                                   <td>10/10</td>
+                                   <td>05/10/2024</td>
+                                   <td>10/10/2024</td>
                                    <td> 16:45</td>
                                    <td>
                                        <button type="button" onClick={() => goTo()}

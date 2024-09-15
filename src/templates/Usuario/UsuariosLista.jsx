@@ -46,7 +46,63 @@ const UsuariosLista = () => {
                             <thead>
                                 <tr>
                                     <th scope="col">ID LABORATÓRIO:</th>
+                                    <th scope="col">SALA:</th>
+                                    <th scope="col">ANDAR:</th>
+                                    <th scope="col">EDITAR:</th>
                                 </tr>
+
+                                <tr>
+                                   <td scope="row">1</td>
+                                   <td>01</td>
+                                   <td>01</td>
+                                   <td>
+                                   <button onClick={() => getId(usuarios.id)}
+                                                className="btn btn-sm btn-warning rounded">
+                                                <i className="bi bi-envelope-open"> Editar</i>
+                                            </button>
+                                   </td>
+
+                               </tr>
+
+                               <tr>
+                                   <td scope="row">2</td>
+                                   <td>03</td>
+                                   <td>02</td>
+                                   <td>
+                                   <button onClick={() => getId(usuarios.id)}
+                                                className="btn btn-sm btn-warning rounded">
+                                                <i className="bi bi-envelope-open"> Editar</i>
+                                            </button>
+                                   </td>
+
+                               </tr>
+
+                               <tr>
+                                   <td scope="row">3</td>
+                                   <td>04</td>
+                                   <td>03</td>
+                                   <td>
+                                   <button onClick={() => getId(usuarios.id)}
+                                                className="btn btn-sm btn-warning rounded">
+                                                <i className="bi bi-envelope-open"> Editar</i>
+                                            </button>
+                                   </td>
+
+                               </tr>
+
+                               <tr>
+                                   <td scope="row">4</td>
+                                   <td>04</td>
+                                   <td>02</td>
+                                   <td>
+                                   <button onClick={() => getId(usuarios.id)}
+                                                className="btn btn-sm btn-warning rounded">
+                                                <i className="bi bi-envelope-open"> Editar</i>
+                                            </button>
+                                   </td>
+
+                               </tr>
+                                
                             </thead>
                             <tbody>
                                 {usuarios?.map((usuario) => (

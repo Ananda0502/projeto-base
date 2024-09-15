@@ -37,7 +37,7 @@ const Mensagem = () => {
                             <tbody>
                                 <tr>
                                     <td scope="row">1</td>
-                                    <td>10/10</td>
+                                    <td>10/10/2024</td>
                                     <td>13:20</td>
                                     <td>
                                         <button type="button" onClick={() => goTo()}
@@ -51,7 +51,7 @@ const Mensagem = () => {
                             <tbody>
                                <tr>
                                    <td scope="row">2</td>
-                                   <td>05/10</td>
+                                   <td>05/10/2024</td>
                                    <td> 16:45</td>
                                    <td>
                                        <button type="button" onClick={() => goTo()}
