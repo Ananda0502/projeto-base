@@ -3,21 +3,21 @@ import Header from "../../components/Header/Header"
 import Sidebar from '../../components/Menu/Sidebar'
 import logo from '../../assets/images/home.png'
 import { useEffect, useRef, useState } from "react"
-import UsuarioService from "../../services/UsuarioService"
+import LaboratorioService from "../../services/LaboratorioService"
 
-const UsuarioEditar = () => {
+const LaboratorioEditar = () => {
 
     const { id } = useParams();
     const _dbRecords = useRef(true);
 
-    const [usuario, setUsuario] = useState([]);
+    const [laboratorio, setLaboratorio] = useState([]);
 
     useEffect(() => {
-        UsuarioService.getById(id).then(
+        LaboratorioService.getById(id).then(
             (response) => {
-                const usuario = response.data;
-                setUsuario(usuario);
-                console.log(usuario);
+                const laboratorio = response.data;
+                setLaboratorio(laboratorio);
+                console.log(laboratorio);
             }
         ).catch((error) => {
             console.log(error);
@@ -30,7 +30,7 @@ const UsuarioEditar = () => {
             <Sidebar />
             <div className="p-3 w-100">
                 <Header
-                    goto={'/usuario'}
+                    goto={'/laboratorio'}
                     title={'Editar Laboratório'}
                     logo={logo}
                 />
@@ -75,4 +75,4 @@ const UsuarioEditar = () => {
     )
 }
 
-export default UsuarioEditar
+export default LaboratorioEditar

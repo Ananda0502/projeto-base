@@ -3,7 +3,7 @@ import Header from "../../components/Header/Header"
 import Sidebar from '../../components/Menu/Sidebar'
 import logo from '../../assets/images/home.png'
 
-const Usuario = () => {
+const Laboratorio = () => {
 
     return (
         <div className="corpo d-flex">
@@ -16,11 +16,11 @@ const Usuario = () => {
                     />
                <section className="m-2 p-2 shadow-lg">
                     <div className="d-flex justify-content-around">
-                        <Link to={'/usuarionovo'} 
+                        <Link to={'/laboratorionovo'} 
                             className="btn btn-lg btn-primary">
                             Novo Laboratório
                         </Link>
-                        <Link to={'/usuarioslista'} 
+                        <Link to={'/laboratoriolista'} 
                             className="btn btn-lg btn-warning">
                             Lista de Laboratórios
                         </Link>
@@ -31,4 +31,4 @@ const Usuario = () => {
     )
 }
 
-export default Usuario
+export default Laboratorio

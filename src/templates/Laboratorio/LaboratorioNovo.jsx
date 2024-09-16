@@ -3,14 +3,14 @@ import Header from "../../components/Header/Header"
 import Sidebar from '../../components/Menu/Sidebar'
 import logo from '../../assets/images/home.png'
 
-const UsuarioNovo = () => {
+const LaboratorioNovo = () => {
 
     return (
         <div className="corpo d-flex">
             <Sidebar />
             <div className="p-3 w-100">
                 <Header
-                    goto={'/usuario'}
+                    goto={'/laboratorio'}
                     title={'Novo Laboratório'}
                     logo={logo}
                 />
@@ -50,4 +50,4 @@ const UsuarioNovo = () => {
     )
 }
 
-export default UsuarioNovo
+export default LaboratorioNovo
