@@ -16,10 +16,6 @@ import UsuarioEditar from "../templates/Usuario/UsuarioEditar"
 import UsuarioNovo from "../templates/Usuario/UsuarioNovo"
 import UsuariosLista from "../templates/Usuario/UsuariosLista"
 
-import Laboratorio from "../templates/Laboratorio/Laboratorio"
-import LaboratorioEditar from "../templates/Laboratorio/LaboratorioEditar"
-import LaboratorioNovo from "../templates/Laboratorio/LaboratorioNovo"
-import LaboratorioLista from "../templates//Laboratorio/LaboratorioLista"
 
 const AppRoutes = () => {
   return (
@@ -40,11 +36,6 @@ const AppRoutes = () => {
         <Route path="/usuarioslista" element={<UsuariosLista />} />
         <Route path="/usuarionovo" element={<UsuarioNovo />} />
         <Route path="/usuarioeditar/:id" element={<UsuarioEditar />} />
-
-        <Route path="/laboratorio" element={<Laboratorio />} />
-        <Route path="/laboratoriolista" element={<LaboratorioLista />} />
-        <Route path="/laboratorionovo" element={<LaboratorioNovo />} />
-        <Route path="/laboratoriolista/:id" element={<LaboratorioEditar />} />
 
       </Routes>
     </div>
