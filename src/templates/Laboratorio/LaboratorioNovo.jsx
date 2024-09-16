@@ -1,29 +1,9 @@
-import { Link, useParams } from "react-router-dom"
+import { Link } from "react-router-dom"
 import Header from "../../components/Header/Header"
 import Sidebar from '../../components/Menu/Sidebar'
 import logo from '../../assets/images/home.png'
-import { useEffect, useRef, useState } from "react"
-import UsuarioService from "../../services/UsuarioService"
 
-const UsuarioEditar = () => {
-
-    const { id } = useParams();
-    const _dbRecords = useRef(true);
-
-    const [usuario, setUsuario] = useState([]);
-
-    useEffect(() => {
-        UsuarioService.getById(id).then(
-            (response) => {
-                const usuario = response.data;
-                setUsuario(usuario);
-                console.log(usuario);
-            }
-        ).catch((error) => {
-            console.log(error);
-        })
-    }, []);
-
+const UsuarioNovo = () => {
 
     return (
         <div className="corpo d-flex">
@@ -31,12 +11,11 @@ const UsuarioEditar = () => {
             <div className="p-3 w-100">
                 <Header
                     goto={'/usuario'}
-                    title={'Editar Laboratório'}
+                    title={'Novo Laboratório'}
                     logo={logo}
                 />
                 <section className="m-2 p-2 shadow-lg">
                     <form className="row g-3">
-                        
                     <div className="col-md-2">
                             <label htmlFor="inputAcesso" id="lab" className="form-label">Escolha a Sala</label>
                             <select id="inputAcesso" className="form-select">
@@ -59,13 +38,9 @@ const UsuarioEditar = () => {
                             </select>
                         </div>
                         
-                        <div className="col-12 d-flex justify-content-between">
+                        <div className="col-12">
                             <button type="submit" className="btn btn-primary">
-                                Salvar Alterações
-                            </button>
-
-                            <button type="button" className="btn btn-danger">
-                                Excluir Laboratório
+                                Cadastrar
                             </button>
                         </div>
                     </form>
@@ -75,4 +50,4 @@ const UsuarioEditar = () => {
     )
 }
 
-export default UsuarioEditar
+export default UsuarioNovo
