@@ -15,7 +15,7 @@ const Sidebar = () => {
                 <div id="navhome"> <Link className="nav-link" aria-current="page" to={'/home'}>Home</Link> </div>
                 <div id="navpendentes"> <Link className="nav-link" to={'/ocorrenciaPendente'} id="navpendentes">Pendentes</Link> </div>
                 <div id="navsolucionadas"> <Link className="nav-link" to={'/ocorrenciaSolucionada'} id="navsolucionadas">Solucionadas</Link> </div>
-                <div id="navlaboratorios"> <Link className="nav-link" to={'/usuario'} id="navlaboratorios">Laboratórios</Link> </div>
+                <div id="navlaboratorios"> <Link className="nav-link" to={'/laboratorio'} id="navlaboratorios">Laboratórios</Link> </div>
             </nav>
         </div>
     )

@@ -11,10 +11,10 @@ import PendenteLer from "../templates/Pendentes/PendenteLer"
 import OcorrenciaSolucionada from "../templates/Solucionadas/OcorrenciaSolucionada"
 import SolucionadaLer from "../templates/Solucionadas/SolucionadaLer"
 
-import Usuario from "../templates/Usuario/Usuario"
-import UsuarioEditar from "../templates/Usuario/UsuarioEditar"
-import UsuarioNovo from "../templates/Usuario/UsuarioNovo"
-import UsuariosLista from "../templates/Usuario/UsuariosLista"
+import Laboratorio from "../templates/Laboratorio/Laboratorio"
+import LaboratorioEditar from "../templates/Laboratorio/LaboratorioEditar"
+import LaboratorioNovo from "../templates/Laboratorio/LaboratorioNovo"
+import LaboratoriosLista from "../templates/Laboratorio/LaboratoriosLista"
 
 
 const AppRoutes = () => {
@@ -32,10 +32,10 @@ const AppRoutes = () => {
         <Route path="/ocorrenciaSolucionada" element={<OcorrenciaSolucionada />} />
         <Route path="/solucionadaLer" element={<SolucionadaLer />} />
 
-        <Route path="/usuario" element={<Usuario />} />
-        <Route path="/usuarioslista" element={<UsuariosLista />} />
-        <Route path="/usuarionovo" element={<UsuarioNovo />} />
-        <Route path="/usuarioeditar/:id" element={<UsuarioEditar />} />
+        <Route path="/laboratorio" element={<Laboratorio />} />
+        <Route path="/laboratorioslista" element={<LaboratoriosLista />} />
+        <Route path="/laboratorionovo" element={<LaboratorioNovo />} />
+        <Route path="/laboratorioeditar/:id" element={<LaboratorioEditar />} />
 
       </Routes>
     </div>

@@ -1,7 +1,7 @@
 import http from '../common/http-common';
-const API_URL = "usuario/";
+const API_URL = "laboratorio/";
 
-const getAllUsuarios = () => {
+const getAllLaboratorios = () => {
     return http.mainInstance.get(API_URL + 'findAll');
 };
 
@@ -9,9 +9,9 @@ const getById = (id) => {
     return http.mainInstance.get(API_URL + `findById/${id}`);
 };
 
-const UsuarioService = {
-    getAllUsuarios,
+const LaboratorioService = {
+    getAllLaboratorios,
     getById,
 }
 
-export default UsuarioService;
+export default LaboratorioService;
