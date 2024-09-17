@@ -54,3 +54,6 @@ border-color: #D9D9D9;}
 #inputData{border-color: #000;}
 #inputID{border-color: #000;}
 #inputDataManutencao{border-color: #0B2B0E; background-color: rgba(12, 45, 15, 0.3)}
+
+#novo{background-color:#928f8f; border-color:#928f8f}
+#lista{background-color: #928f8f; color:#ffffff; border-color: #928f8f;}
