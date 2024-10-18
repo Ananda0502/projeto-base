@@ -5,8 +5,11 @@ import logo from '../../assets/images/home.png'
 import { useEffect, useState } from "react";
 import LaboratorioService from "../../services/LaboratorioService";
 
+
+
 const LaboratoriosLista = () => {
     const [laboratorios, setLaboratorios] = useState([]);
+    const navigate = useNavigate(); 
 
     useEffect(() => {
         LaboratorioService.getAllLaboratorios().then(
@@ -21,8 +24,9 @@ const LaboratoriosLista = () => {
     }, []);
 
     const getId = (id) => {
-        navigate(`/laboratorioeditar/` + id)
-    }
+        navigate(`/laboratorioeditar/${id}`);
+    };
+    
 
     return (
         <div className="corpo d-flex">
