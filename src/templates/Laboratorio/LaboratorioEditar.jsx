@@ -7,7 +7,7 @@ import LaboratorioService from "../../services/LaboratorioService";
 
 const LaboratorioEditar = () => {
     const { id } = useParams();
-    const navigate = useNavigate(); 
+    const navigate = useNavigate();
     const _dbRecords = useRef(true);
     const [laboratorio, setLaboratorio] = useState({});
 
@@ -26,43 +26,37 @@ const LaboratorioEditar = () => {
         e.preventDefault();
 
         LaboratorioService.verificarDuplicidade(laboratorio.sala, laboratorio.andar)
-        .then((response) => {
-            if (response.data.isDuplicated) {
-                alert("Já existe um laboratório com esta sala e andar!");
-            } else {
-                LaboratorioService.update(id, laboratorio)
-                    .then(() => {
-                        alert('Laboratório atualizado com sucesso!');
-                        navigate("/laboratorio");
-                    })
-                    .catch((error) => {
-                        console.error('Erro ao atualizar laboratório:', error);
-                        alert('Erro ao atualizar laboratório.');
-                    });
-            }
-        }).catch((error) => {
-            console.log(error);
-        });
+            .then((response) => {
+                if (response.data === true) {
+                    alert("Já existe um laboratório com esta sala e andar!");
+                } else {
+                    LaboratorioService.update(id, laboratorio)
+                        .then(() => {
+                            alert('Laboratório atualizado com sucesso!');
+                            navigate("/laboratorio");
+                        })
+                        .catch((error) => {
+                            console.error('Erro ao atualizar laboratório:', error);
+                            alert('Erro ao atualizar laboratório.');
+                        });
+                }
+            }).catch((error) => {
+                console.log(error);
+            });
     };
 
     const handleDelete = () => {
-        console.log("ID do laboratório a ser excluído:", id);  // Verifica o ID no console
-        
-        const confirmDelete = window.confirm("Você realmente deseja excluir este laboratório?");
-        LaboratorioService.deleteLaboratorio(id)
-            .then(() => {
-                console.log('Laboratório excluído com sucesso!');
-                alert('Laboratório excluído com sucesso!');
-                navigate('/laboratorio');
-            })
-            .catch((error) => {
-                console.error('Erro ao excluir laboratório:', error);
-            });
+        if (window.confirm("Tem certeza que deseja excluir este laboratório?")) {
+            LaboratorioService.deleteLaboratorio(id)
+                .then(() => {
+                    alert('Laboratório excluído com sucesso!');
+                    navigate('/laboratorio');
+                })
+                .catch((error) => {
+                    console.error('Erro ao excluir laboratório:', error);
+                });
+        }
     };
-    
-    
-    
-    
 
     return (
         <div className="corpo d-flex">
@@ -102,10 +96,8 @@ const LaboratorioEditar = () => {
                                 Salvar Alterações
                             </button>
                             <button type="button" className="btn btn-danger" onClick={handleDelete}>
-                             Excluir Laboratório
-                             </button>
-
-
+                                Excluir Laboratório
+                            </button>
                         </div>
                     </form>
                 </section>
@@ -113,6 +105,5 @@ const LaboratorioEditar = () => {
         </div>
     );
 };
-
 
 export default LaboratorioEditar;
