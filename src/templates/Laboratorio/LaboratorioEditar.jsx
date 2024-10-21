@@ -25,6 +25,21 @@ const LaboratorioEditar = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+
+        LaboratorioService.verificarDuplicidade(laboratorio.sala, laboratorio.andar)
+        .then((response) => {
+            if (response.data.isDuplicated) {
+                setErro("Já existe um laboratório com esta sala e andar!");
+            } else {
+                LaboratorioService.update(id, laboratorio).then(() => {
+                    navigate("/laboratorio");
+                }).catch((error) => {
+                    console.log(error);
+                });
+            }
+        }).catch((error) => {
+            console.log(error);
+        });
         
         // Lógica para atualizar o laboratório
         LaboratorioService.update(id, laboratorio)

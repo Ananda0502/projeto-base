@@ -16,6 +16,10 @@ const saveLaboratorio = (laboratorio) => {
     return http.mainInstance.post(API_URL, laboratorio);
 };
 
+const verificarDuplicidade = (sala, andar) => {
+    return http.mainInstance.get(`${API_URL}/verificarDuplicidade?sala=${sala}&andar=${andar}`);
+};
+
 // Método para atualizar um laboratório existente
 const updateLaboratorio = (id, laboratorio) => {
     return http.mainInstance.put(`${API_URL}/${id}`, laboratorio);
@@ -26,6 +30,7 @@ const LaboratorioService = {
     getById,
     saveLaboratorio,
     update: updateLaboratorio, // Adicionando o método de update
+    verificarDuplicidade,
 };
 
 export default LaboratorioService;
