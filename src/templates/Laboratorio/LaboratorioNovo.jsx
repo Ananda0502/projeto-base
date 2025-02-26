@@ -60,7 +60,7 @@ const LaboratorioNovo = () => {
                 <section className="m-2 p-2 shadow-lg">
                     <form className="row g-3" onSubmit={handleSubmit}>
                         <div className="col-md-2">
-                            <label htmlFor="inputSala" className="form-label">Escolha a Sala</label>
+                            <label htmlFor="inputSala" className="form-label" id="sala">Escolha a Sala:</label>
                             <select id="inputSala" className="form-select" value={sala} onChange={(e) => setSala(e.target.value)} required>
                                 <option value="" disabled>Laboratórios</option>
                                 <option value="01">Sala 01</option>
@@ -71,7 +71,7 @@ const LaboratorioNovo = () => {
                         </div>
                        
                         <div className="col-md-2">
-                            <label htmlFor="inputAndar" className="form-label">Escolha o Andar</label>
+                            <label htmlFor="inputAndar" className="form-label" id="andar">Escolha o Andar:</label>
                             <select id="inputAndar" className="form-select" value={andar} onChange={(e) => setAndar(e.target.value)} required>
                                 <option value="" disabled>Andares</option>
                                 <option value="1">1° andar</option>
