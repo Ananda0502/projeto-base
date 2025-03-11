@@ -5,6 +5,7 @@ import Home from "../templates/Home/Home"
 import ForgotPass from "../templates/Login/ForgotPass"
 import Login from "../templates/Login/Login"
 
+import Ocorrencias from "../templates/Ocorrencias/Ocorrencias"
 import OcorrenciaPendente from "../templates/Pendentes/OcorrenciaPendente"
 import PendenteLer from "../templates/Pendentes/PendenteLer"
 
@@ -21,7 +22,7 @@ const AppRoutes = () => {
   return (
     <div>
       <Routes>
-        <Route path="/" element={<App />} />
+        <Route path="/" element={<Login />} />
         <Route path="/home" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/forgotpass" element={<ForgotPass />} />
@@ -37,6 +38,7 @@ const AppRoutes = () => {
         <Route path="/laboratorionovo" element={<LaboratorioNovo />} />
         <Route path="/laboratorio" element={<LaboratoriosLista />} />
         <Route path="/laboratorioeditar/:id" element={<LaboratorioEditar />} />
+        <Route path="/ocorrencias" element={<Ocorrencias />} />
 
       </Routes>
     </div>
