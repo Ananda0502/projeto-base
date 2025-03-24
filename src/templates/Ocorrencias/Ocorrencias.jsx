@@ -1,6 +1,7 @@
 import React, { useState } from "react";
  import OcorrenciasService from "../../services/OcorrenciasServices.js";
  import "bootstrap/dist/css/bootstrap.min.css";
+ import './Ocorrencias.css';
  
  const Ocorrencias = () => {
    const [ocorrencia, setOcorrencia] = useState({
@@ -90,7 +91,7 @@ import React, { useState } from "react";
              onChange={handleChange}
            />
          </div>
-         <button type="submit" className="btn btn-primary w-100">
+         <button type="submit" className="btn btn-primary w-100" >
            Cadastrar Ocorrência
          </button>
        </form>

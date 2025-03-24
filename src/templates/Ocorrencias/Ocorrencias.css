@@ -1,0 +1,33 @@
+/* Ocorrencias.css */
+body {
+    background-color: white;
+    color: #0B112B;
+  }
+  
+  .container {
+    background-color: #0B112B; /* Fundo da caixa do formulário */
+    color: #0B112B; /* Cor do texto */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra para destaque */
+  }
+  
+  h2 {
+    color: white; /* Cor do título */
+  }
+  
+  .form-label {
+    color: #0B112B; /* Cor das etiquetas dos campos */
+  }
+  
+  .btn-primary {
+    background-color: 	#C0C0C0; /* Cor do botão */
+    border: none; /* Remove borda padrão */
+ 
+  }
+  
+  .btn-primary:hover {
+    background-color: #1A223B; /* Cor do botão ao passar o mouse */
+  }
+
+  
