@@ -4,7 +4,7 @@ body {
     color: #0B112B;
   }
   
-  .container {
+  #ocorrencia.container {
     background-color: #0B112B; /* Fundo da caixa do formulário */
     color: #0B112B; /* Cor do texto */
     padding: 20px;
@@ -30,4 +30,13 @@ body {
     background-color: #1A223B; /* Cor do botão ao passar o mouse */
   }
 
+  .btn-secondary {
+    background-color: #b8b3b3;
+    color: #000;
+  }
+
+  .btn-secondary:hover {
+    background-color: #848891; /* Cor do botão ao passar o mouse */
+  }
+  
   
