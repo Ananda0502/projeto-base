@@ -33,7 +33,6 @@ const deleteLaboratorio = (id) => {
     return http.mainInstance.delete(`${API_URL}/${id}`);
 };
 
-
 // Exportação do serviço
 const LaboratorioService = {
     getAllLaboratorios,
