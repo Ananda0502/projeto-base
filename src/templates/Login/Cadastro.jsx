@@ -1,8 +1,10 @@
 // src/templates/Login/Cadastro.jsx
+
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom"; // Adicionando Link aqui
 import "bootstrap/dist/css/bootstrap.min.css";
-import './Login.css'; // Se precisar de um estilo próprio para o cadastro
+import './Cadastro.css'; // Importa o CSS certo
+import logo from '../../assets/images/system-logo_128_x_128.png';
 
 const Cadastro = () => {
   const [usuario, setUsuario] = useState({
@@ -19,18 +21,15 @@ const Cadastro = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Verifica se a senha foi preenchida
     if (!usuario.senha) {
       alert("A senha não pode estar vazia!");
       return;
     }
 
-    // Envia os dados para o backend
     try {
-      // Aqui você fará o POST para o backend quando estiver pronto
       // await CadastroService.cadastrar(usuario);
       alert("Cadastro realizado com sucesso!");
-      navigate("/login"); // Redireciona para a tela de login após o cadastro
+      navigate("/login");
     } catch (error) {
       console.error("Erro ao cadastrar o usuário", error);
       alert("Erro ao cadastrar. Tente novamente.");
@@ -39,34 +38,48 @@ const Cadastro = () => {
 
   return (
     <div className="container mt-5">
-      <h2>Cadastro de Novo Usuário</h2>
-      <form onSubmit={handleSubmit} className="p-4 border rounded bg-light">
-        <div className="mb-3">
-          <label className="form-label">E-mail com RM:</label>
-          <input
-            type="email"
-            className="form-control"
-            name="email"
-            value={usuario.email}
-            onChange={handleChange}
-            required
-          />
+      <div className="cadastro-form">
+        <div className="cadastro-logo">
+          <img src={logo} alt="logo" />
         </div>
-        <div className="mb-3">
-          <label className="form-label">Senha</label>
-          <input
-            type="password"
-            className="form-control"
-            name="senha"
-            value={usuario.senha}
-            onChange={handleChange}
-            required
-          />
+        <form onSubmit={handleSubmit}>
+          <div className="mb-3">
+            <label htmlFor="email" className="form-label">RM:</label>
+            <input
+              type="email"
+              className="form-control"
+              name="email"
+              id="email"
+              value={usuario.email}
+              onChange={handleChange}
+              required
+            />
+          </div>
+          <div className="mb-3">
+            <label htmlFor="senha" className="form-label">Senha:</label>
+            <input
+              type="password"
+              className="form-control"
+              name="senha"
+              id="senha"
+              value={usuario.senha}
+              onChange={handleChange}
+              required
+            />
+          </div>
+          <button
+            type="submit"
+            className="btn btn-entrar"
+          >
+            Cadastrar
+          </button>
+        </form>
+
+        {/* Adicionando o link para a tela de login */}
+        <div className="d-flex justify-content-center mt-3">
+          <p>Já possui Login? <Link to="/login">Clique aqui</Link></p>
         </div>
-        <button type="submit" className="btn btn-primary w-100">
-          Cadastrar
-        </button>
-      </form>
+      </div>
     </div>
   );
 };
