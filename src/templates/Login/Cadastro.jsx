@@ -29,7 +29,7 @@ const Cadastro = () => {
     try {
       // await CadastroService.cadastrar(usuario);
       alert("Cadastro realizado com sucesso!");
-      navigate("/login");
+      navigate("/Home");
     } catch (error) {
       console.error("Erro ao cadastrar o usuário", error);
       alert("Erro ao cadastrar. Tente novamente.");
