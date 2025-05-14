@@ -1,26 +1,24 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import OcorrenciasService from "../../services/OcorrenciasServices.js";
-import LaboratorioService from "../../services/LaboratorioService.js"; // Importando o serviço de Laboratório
+import LaboratorioService from "../../services/LaboratorioService.js";
 import "bootstrap/dist/css/bootstrap.min.css";
 import './Ocorrencias.css';
 
 const Ocorrencias = () => {
   const [ocorrencia, setOcorrencia] = useState({
     descricao: "",
-    anexo: "",
     patrimonio: "",
-    laboratorioId: "", // Adiciona a ID do laboratório
+    laboratorioId: ""
   });
+  const [anexo, setAnexo] = useState(null);
+  const [laboratorios, setLaboratorios] = useState([]);
 
-  const [laboratorios, setLaboratorios] = useState([]); // Estado para armazenar os laboratórios
-
-  // Carrega os laboratórios assim que o componente é montado
   useEffect(() => {
     const fetchLaboratorios = async () => {
       try {
         const response = await LaboratorioService.getAllLaboratorios();
-        setLaboratorios(response.data);  // Armazena os laboratórios no estado
+        setLaboratorios(response.data);
       } catch (error) {
         console.error("Erro ao carregar laboratórios", error);
       }
@@ -32,11 +30,23 @@ const Ocorrencias = () => {
     setOcorrencia({ ...ocorrencia, [e.target.name]: e.target.value });
   };
 
+  const handleFileChange = (e) => {
+    setAnexo(e.target.files[0]);
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    const formData = new FormData();
+    formData.append("descricao", ocorrencia.descricao);
+    formData.append("patrimonio", ocorrencia.patrimonio);
+    formData.append("laboratorioId", ocorrencia.laboratorioId);
+    if (anexo) {
+      formData.append("anexo", anexo);
+    }
+
     try {
-      // Envia a ocorrência com a ID do laboratório
-      await OcorrenciasService.saveOcorrencia(ocorrencia);
+      await OcorrenciasService.saveOcorrencia(formData);
       alert("Ocorrência cadastrada com sucesso!");
     } catch (error) {
       console.error("Erro ao cadastrar ocorrência", error);
@@ -47,9 +57,7 @@ const Ocorrencias = () => {
   return (
     <div className="container mt-5" id="ocorrencia">
       <div className="d-flex justify-content-between align-items-center">
-        <Link to="/home" className="btn btn-secondary btn-sm">
-          Voltar
-        </Link>
+        <Link to="/home" className="btn btn-secondary btn-sm">Voltar</Link>
         <h2 className="mx-auto">Cadastro de Ocorrências</h2>
       </div>
 
@@ -64,13 +72,12 @@ const Ocorrencias = () => {
           ></textarea>
         </div>
         <div className="mb-3">
-          <label className="form-label">Anexo</label>
+          <label className="form-label">Anexo (imagem)</label>
           <input
-            type="text"
+            type="file"
             className="form-control"
-            name="anexo"
-            value={ocorrencia.anexo}
-            onChange={handleChange}
+            onChange={handleFileChange}
+            accept="image/*"
           />
         </div>
         <div className="mb-3">
@@ -83,8 +90,6 @@ const Ocorrencias = () => {
             onChange={handleChange}
           />
         </div>
-
-        {/* Dropdown para selecionar o laboratório */}
         <div className="mb-3">
           <label className="form-label">Laboratório</label>
           <select
@@ -95,14 +100,13 @@ const Ocorrencias = () => {
             required
           >
             <option value="">Selecione o Laboratório</option>
-            {laboratorios.map((laboratorio) => (
-              <option key={laboratorio.id} value={laboratorio.id}>
-                {laboratorio.sala} - {laboratorio.andar}
+            {laboratorios.map((lab) => (
+              <option key={lab.id} value={lab.id}>
+                {lab.sala} - {lab.andar}
               </option>
             ))}
           </select>
         </div>
-
         <button type="submit" className="btn btn-primary w-100">
           Cadastrar Ocorrência
         </button>
