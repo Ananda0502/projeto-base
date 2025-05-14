@@ -15,7 +15,7 @@ const getById = (id) => {
 // Método para salvar um novo laboratório
 const saveLaboratorio = (laboratorio) => {
     return http.mainInstance.post(API_URL, laboratorio);
-};
+}; 
 
 // Verificar duplicidade
 const verificarDuplicidade = (sala, andar) => {
