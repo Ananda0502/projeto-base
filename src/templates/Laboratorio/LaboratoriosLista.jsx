@@ -52,8 +52,8 @@ const LaboratoriosLista = () => {
                                 {laboratorios?.map((laboratorio) => (
                                     <tr className="" key={laboratorio.id}>
                                         <td>{laboratorio.id}</td>
-                                        <td>{laboratorio.sala}</td> {/* Certifique-se de que os nomes dos campos estão corretos */}
-                                        <td>{laboratorio.andar}</td> {/* Certifique-se de que os nomes dos campos estão corretos */}
+                                        <td>{laboratorio.sala}</td> 
+                                        <td>{laboratorio.andar}</td> 
                                         <td>
                                             <button onClick={() => getId(laboratorio.id)}
                                                 className="btn btn-sm btn-warning rounded">

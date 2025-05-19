@@ -1,38 +1,40 @@
 // src/templates/Login/Cadastro.jsx
 
 import React, { useState } from "react";
-import { useNavigate, Link } from "react-router-dom"; // Adicionando Link aqui
+import { useNavigate, Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
-import './Cadastro.css'; // Importa o CSS certo
+import './Cadastro.css';
 import logo from '../../assets/images/system-logo_128_x_128.png';
+import TecnicoService from "../../services/TecnicoService";
 
-const Cadastro = () => {
-  const [usuario, setUsuario] = useState({
-    email: "",
+function Cadastro() {
+  const [tecnico, setTecnico] = useState({
+    rmtecnico: "",
     senha: "",
   });
 
   const navigate = useNavigate();
 
   const handleChange = (e) => {
-    setUsuario({ ...usuario, [e.target.name]: e.target.value });
+    const { name, value } = e.target;
+    setTecnico({ ...tecnico, [name]: value });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!usuario.senha) {
-      alert("A senha não pode estar vazia!");
+    if (!tecnico.rmtecnico || !tecnico.senha) {
+      alert("Preencha todos os campos!");
       return;
     }
 
     try {
-      // await CadastroService.cadastrar(usuario);
-      alert("Cadastro realizado com sucesso!");
+      await TecnicoService.cadastrarTecnico(tecnico);
+      alert("Cadastro de técnico realizado com sucesso!");
       navigate("/Home");
     } catch (error) {
-      console.error("Erro ao cadastrar o usuário", error);
-      alert("Erro ao cadastrar. Tente novamente.");
+      console.error("Erro ao cadastrar o técnico:", error);
+      alert("Erro ao cadastrar. Verifique o console.");
     }
   };
 
@@ -44,13 +46,13 @@ const Cadastro = () => {
         </div>
         <form onSubmit={handleSubmit}>
           <div className="mb-3">
-            <label htmlFor="email" className="form-label">RM:</label>
+            <label htmlFor="rmtecnico" className="form-label">RM:</label>
             <input
-              type="email"
+              type="text"
               className="form-control"
-              name="email"
-              id="email"
-              value={usuario.email}
+              name="rmtecnico"
+              id="rmtecnico"
+              value={tecnico.rmtecnico}
               onChange={handleChange}
               required
             />
@@ -62,26 +64,22 @@ const Cadastro = () => {
               className="form-control"
               name="senha"
               id="senha"
-              value={usuario.senha}
+              value={tecnico.senha}
               onChange={handleChange}
               required
             />
           </div>
-          <button
-            type="submit"
-            className="btn btn-entrar"
-          >
+          <button type="submit" className="btn btn-entrar">
             Cadastrar
           </button>
         </form>
 
-        {/* Adicionando o link para a tela de login */}
         <div className="d-flex justify-content-center mt-3">
           <p>Já possui Login? <Link to="/login">Clique aqui</Link></p>
         </div>
       </div>
     </div>
   );
-};
+}
 
 export default Cadastro;
