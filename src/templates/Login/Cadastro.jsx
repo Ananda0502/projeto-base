@@ -24,11 +24,12 @@ function Cadastro() {
     e.preventDefault();
 
     if (!tecnico.rmtecnico || !tecnico.senha) {
-      alert("Preencha todos os campos!");
+      alert("Preencha todos os campos!"); 
       return;
     }
-
+    console.log(tecnico)
     try {
+
       await TecnicoService.cadastrarTecnico(tecnico);
       alert("Cadastro de técnico realizado com sucesso!");
       navigate("/Home");
