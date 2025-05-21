@@ -10,10 +10,10 @@ const getById = (id) => {
     return http.mainInstance.get(`${API_URL}/findById/${id}`);
 };
 
-const saveOcorrencia = (formData) => {
-    return http.mainInstance.post(`${API_URL}/upload`, formData, {
+const saveOcorrencia = (ocorrencia) => {
+    return http.mainInstance.post(`${API_URL}/upload`, ocorrencia, {
         headers: {
-            "Content-Type": "multipart/form-data"
+            "Content-Type": "application/json"
         }
     });
 };
