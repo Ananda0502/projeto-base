@@ -11,6 +11,7 @@ const Ocorrencias = () => {
     patrimonio: "",
     laboratorioId: ""
   });
+
   const [anexo, setAnexo] = useState(null);
   const [laboratorios, setLaboratorios] = useState([]);
 
@@ -42,7 +43,7 @@ const Ocorrencias = () => {
     formData.append("patrimonio", ocorrencia.patrimonio);
     formData.append("laboratorioId", ocorrencia.laboratorioId);
     if (anexo) {
-      formData.append("anexo", anexo);
+      formData.append("anexo", anexo.name); // Salva apenas o nome do arquivo
     }
 
     try {
@@ -61,7 +62,7 @@ const Ocorrencias = () => {
         <h2 className="mx-auto">Cadastro de Ocorrências</h2>
       </div>
 
-      <form onSubmit={handleSubmit} className="p-4 border rounded bg-light">
+      <form onSubmit={handleSubmit} className="p-4 border rounded bg-light" encType="multipart/form-data">
         <div className="mb-3">
           <label className="form-label">Descrição</label>
           <textarea

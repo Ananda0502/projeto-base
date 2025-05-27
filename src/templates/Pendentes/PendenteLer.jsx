@@ -18,7 +18,7 @@ const PendeteLer = () => {
                     <form className="mx-5 p-2 border">
                         <div className="row my-3 g-1">
                             <label htmlFor="inputID" className="col-md-1 col-form-label">ID:</label>
-                            <div class="col-md-2">
+                            <div className="col-md-2">
                                 <input type="text" className="form-control" id="inputID" readOnly />
                             </div>
 
