@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = "http://localhost:8080/tecnicos"; // ajuste se seu backend estiver rodando em outra porta
+const API_URL = "http://localhost:8080/tecnicos"; 
 
 const cadastrarTecnico = (tecnico) => {
  

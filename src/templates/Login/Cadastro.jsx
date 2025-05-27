@@ -1,5 +1,3 @@
-// src/templates/Login/Cadastro.jsx
-
 import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -13,6 +11,8 @@ function Cadastro() {
     senha: "",
   });
 
+  const [errorMessage, setErrorMessage] = useState("");  // estado para mensagem de erro
+
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -24,18 +24,26 @@ function Cadastro() {
     e.preventDefault();
 
     if (!tecnico.rmtecnico || !tecnico.senha) {
-      alert("Preencha todos os campos!"); 
+      setErrorMessage("Preencha todos os campos!");
       return;
     }
-    console.log(tecnico)
-    try {
 
+    // Validação simples: o RM deve conter '@'
+    if (!tecnico.rmtecnico.includes("@")) {
+      setErrorMessage("Por favor, insira um RM válido contendo '@'.");
+      return;
+    }
+
+    try {
       await TecnicoService.cadastrarTecnico(tecnico);
       alert("Cadastro de técnico realizado com sucesso!");
       navigate("/Home");
     } catch (error) {
-      console.error("Erro ao cadastrar o técnico:", error);
-      alert("Erro ao cadastrar. Verifique o console.");
+      if (error.response && error.response.status === 400) {
+        setErrorMessage(error.response.data); // ex: "RM já cadastrado."
+      } else {
+        setErrorMessage("Erro ao cadastrar. Tente novamente mais tarde.");
+      }
     }
   };
 
@@ -70,6 +78,13 @@ function Cadastro() {
               required
             />
           </div>
+
+          {errorMessage && (
+            <div className="alert alert-danger" role="alert">
+              {errorMessage}
+            </div>
+          )}
+
           <button type="submit" className="btn btn-entrar">
             Cadastrar
           </button>
