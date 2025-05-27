@@ -2,6 +2,8 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import logo from '../../assets/images/system-logo_128_x_128.png';
 import './Login.css';
+import TecnicoService from "../../services/TecnicoService";
+
 
 const Login = () => {
   const [form, setForm] = useState({
@@ -17,10 +19,22 @@ const Login = () => {
     setForm({ ...form, [name]: value });
   };
 
-  // Função de envio do formulário
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    navigate("/home"); // Aqui você pode fazer a chamada ao backend, se necessário
+  
+    try {
+      const response = await TecnicoService.loginTecnico(form.email, form.senha);
+  
+      if (response.data && Object.keys(response.data).length > 0) {
+        // técnico encontrado
+        navigate("/home");
+      } else {
+        alert("Login inválido. Verifique RM e senha.");
+      }
+    } catch (error) {
+      console.error("Erro ao tentar login:", error);
+      alert("Erro ao tentar login. Verifique RM e senha.");
+    }
   };
 
   return (
