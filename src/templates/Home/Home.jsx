@@ -3,12 +3,21 @@ import Header from "../../components/Header/Header"
 import Sidebar from '../../components/Menu/Sidebar'
 import logo from '../../assets/images/home.png'
 import { useEffect } from "react"
+import { useNavigate } from "react-router-dom";
+
 
 const Home = () => {
+    const navigate = useNavigate(); 
     const usuarioLogado = JSON.parse(sessionStorage.getItem("tecnico"))
+    
     useEffect(() => {
-        console.log(usuarioLogado)
-    })
+        if (!usuarioLogado) {
+          navigate("/login"); // Redireciona se não estiver logado
+        } else {
+          console.log(usuarioLogado); // Só mostra se estiver logado
+        }
+      }, []);
+      
 
     return (
         <div className=" corpo d-flex">
@@ -21,7 +30,7 @@ const Home = () => {
                     title={'Home'}
                     logo={logo}
                     />
-                <h1 id="saudacoes"> BEM VINDO AO SISTEMA! {usuarioLogado.email}</h1>
+                <h1 id="saudacoes"> BEM VINDO AO SISTEMA! {usuarioLogado?.rmtecnico}</h1>
            </div>
         </div>
     )

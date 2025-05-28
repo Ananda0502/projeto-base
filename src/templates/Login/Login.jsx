@@ -4,9 +4,10 @@ import logo from '../../assets/images/system-logo_128_x_128.png';
 import './Login.css';
 import TecnicoService from "../../services/TecnicoService";
 
+
 const Login = () => {
   const [form, setForm] = useState({
-    email: "",
+    rmtecnico: "",
     senha: "",
   });
 
@@ -25,10 +26,10 @@ const Login = () => {
     setErrorMessage(""); // limpa erro ao tentar enviar
 
     try {
-      const response = await TecnicoService.loginTecnico(form.email, form.senha);
+      const response = await TecnicoService.loginTecnico(form.rmtecnico, form.senha);
 
       if (response.data && Object.keys(response.data).length > 0) {
-        sessionStorage.setItem("tecnico", JSON.stringify(form))//faz o site reconhecer o login 
+        sessionStorage.setItem("tecnico", JSON.stringify(form))
         navigate("/home");
       } else {
         setErrorMessage("Login inválido. Verifique RM e senha.");
@@ -50,8 +51,8 @@ const Login = () => {
           <input
             type="email"
             className="form-control text-center fw-medium shadow"
-            name="email"
-            value={form.email}
+            name="rmtecnico"
+            value={form.rmtecnico}
             onChange={handleChange}
             required
             aria-describedby="rmHelp"

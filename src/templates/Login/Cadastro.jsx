@@ -36,11 +36,12 @@ function Cadastro() {
 
     try {
       await TecnicoService.cadastrarTecnico(tecnico);
+      sessionStorage.setItem("tecnico", JSON.stringify(tecnico));
       alert("Cadastro de técnico realizado com sucesso!");
       navigate("/Home");
     } catch (error) {
       if (error.response && error.response.status === 400) {
-        sessionStorage.setItem("tecnico", JSON.stringify(form))//faz o site reconhecer o login 
+        sessionStorage.setItem("tecnico", JSON.stringify(tecnico))//faz o site reconhecer o login 
         setErrorMessage(error.response.data); // ex: "RM já cadastrado."
       } else {
         setErrorMessage("Erro ao cadastrar. Tente novamente mais tarde.");
