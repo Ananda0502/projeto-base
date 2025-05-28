@@ -6,7 +6,9 @@ import { useEffect } from "react"
 
 const Home = () => {
     const usuarioLogado = JSON.parse(sessionStorage.getItem("tecnico"))
-
+    useEffect(() => {
+        console.log(usuarioLogado)
+    })
 
     return (
         <div className=" corpo d-flex">

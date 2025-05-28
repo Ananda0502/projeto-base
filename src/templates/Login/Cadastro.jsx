@@ -40,6 +40,7 @@ function Cadastro() {
       navigate("/Home");
     } catch (error) {
       if (error.response && error.response.status === 400) {
+        sessionStorage.setItem("tecnico", JSON.stringify(form))//faz o site reconhecer o login 
         setErrorMessage(error.response.data); // ex: "RM já cadastrado."
       } else {
         setErrorMessage("Erro ao cadastrar. Tente novamente mais tarde.");
