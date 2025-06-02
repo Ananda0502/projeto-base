@@ -1,102 +1,68 @@
-@import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
-@import '../node_modules/bootstrap-icons/font/bootstrap-icons.min.css';
-
-.table-wrapper {
-    max-height: 69vh; 
-    overflow-y: auto; 
+.corpo {
+  background: url('./assets/images/background.png');
+  background-color: #f0f4f8;
+  background-repeat: repeat;
+  min-height: 100vh;
+  font-family: 'Segoe UI', sans-serif;
 }
 
-#saudacoes{color:#ffffff; text-align:center; margin-top: 150px}
-body{background-color: #ffffff;}
-
-#marcar{color: #ffffff;
-background-color:#0B2B0E;
-border-color: #0B2B0E;
+/* Saudação geral */
+#welcome {
+  font-size: 2rem;
+  color: #002147;
+  font-weight: 700;
 }
-
-#cancelar{background-color: #D9D9D9;
-    border-color: #D9D9D9;
-}
-
-#entrar{
-    color: #000;
-    background-color: #D9D9D9;
-    border-color: #D9D9D9;
-}
-
-#senha{
-    color:#ffffff;
-}
-
-#rm{
-    color:#ffffff;
-}
-
-#topo{background-color: #ffffff;}
-
-#Home {background-color: #ffffff;
-}
-
-#botaon{background-color:#D9D9D9;
-border-color: #D9D9D9;}
-
-#caixaemcima{background-color: #ffffff;}
-#botaovoltar{background-color: #c0c0c0;}
-
-#andar{color:#ffffff;}
-#lab{color:#ffffff;}
-
-#botaovoltar{border-color: #D9D9D9;}
-
-#inputTexto{border-color: #000000;}
-#inputEmail{border-color: #000;}
-#inputStatus{border-color: #000;}
-#inputData{border-color: #000;}
-#inputID{border-color: #000;}
-#inputDataManutencao{border-color: #0B2B0E; background-color: rgba(12, 45, 15, 0.3)}
-
-#novo{background-color:#928f8f; border-color:#928f8f}
-#lista{background-color: #928f8f; color:#ffffff; border-color: #928f8f;}
-
-#andar{color: #ffffff;}
-
-#sala{color: #ffffff;}
 
 .email-box {
-    background-color: #f0f4ff; /* azul clarinho */
-    border: 1px solid #4a90e2; /* borda azul */
-    padding: 10px 20px;
-    border-radius: 10px;
-    display: inline-block;
-    margin-top: 10px;
-    font-weight: 600;
-    color: #333;
-    font-size: 1.1rem;
-    box-shadow: 0 2px 8px rgba(74, 144, 226, 0.3);
-  }
-  
-  .admin-button-container {
-    margin-top: 30px;
-    display: flex;
-    justify-content: center; /* centraliza o botão horizontalmente */
-  }
-  
-  /* Botão de Administração */
+  background-color: rgba(255, 255, 255, 0.95);
+  padding: 12px 20px;
+  border-radius: 10px;
+  font-size: 1.1rem;
+  color: #002147;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  margin-top: 10px;
+}
+
+/* Caixa centralizada */
+.welcome-box {
+  margin-top: 40px;
+  padding: 30px;
+  max-width: 600px;
+  background-color: rgba(255, 255, 255, 0.85);
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+/* Botão de admin mais bonito */
 .admin-button {
-    background: linear-gradient(135deg, #002147, #A9A9A9); /* Oxford Blue → Gray */
-    border: none;
-    padding: 12px 30px;
-    border-radius: 30px;
-    color: white;
-    font-weight: 700;
-    font-size: 1.1rem;
-    cursor: pointer;
-    box-shadow: 0 8px 15px rgba(0, 33, 71, 0.3);
-    transition: background 0.3s ease, box-shadow 0.3s ease;
-  }
-  
-  .admin-button:hover {
-    background: linear-gradient(135deg, #A9A9A9, #002147); /* Gray → Oxford Blue */
-    box-shadow: 0 10px 20px rgba(0, 33, 71, 0.5);
-  }
-  
+  background: linear-gradient(135deg, #002147, #7a7a7a);
+  color: white;
+  border: none;
+  padding: 12px 30px;
+  font-size: 1rem;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.admin-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+  cursor: pointer;
+}
+
+
+.header-container {
+  background-color: white;
+  padding: 1rem;
+  border-radius: 10px;
+  margin-bottom: 1rem;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.home-background {
+  background: linear-gradient(135deg, #0F1C4D, #b0b0b0);
+  min-height: 100vh;
+  padding: 2rem;
+  color: #fff;
+}

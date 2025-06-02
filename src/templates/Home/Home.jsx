@@ -1,8 +1,9 @@
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Header from "../../components/Header/Header";
 import Sidebar from '../../components/Menu/Sidebar';
 import logo from '../../assets/images/home.png';
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
+import { FaUser } from "react-icons/fa";
 
 const Home = () => {
   const navigate = useNavigate(); 
@@ -24,27 +25,29 @@ const Home = () => {
           title={'Home'}
           logo={logo}
         />
-        <h1 id="saudacoes">
-          BEM VINDO AO SISTEMA!
-        </h1>
 
-        {/* Caixa com o email do usuário */}
-        <div className="email-box">
-          {usuarioLogado?.rmtecnico}
+        <div className="welcome-box text-center mx-auto">
+          <h1 id="saudacoes" className="mb-3">
+            BEM-VINDO AO SISTEMA!
+          </h1>
+
+          {/* Caixa com RM/Email */}
+          <div className="email-box d-inline-flex align-items-center gap-2">
+            <FaUser /> {usuarioLogado?.rmtecnico}
+          </div>
         </div>
 
         {/* BOTÃO SÓ PARA ADM */}
         {isAdmin && (
-          <div className="admin-button-container">
+          <div className="admin-button-container mt-4 text-center">
             <button
-              className="btn btn-primary admin-button"
+              className="admin-button"
               onClick={() => navigate("/painel-admin")}
             >
               Painel de Administração
             </button>
           </div>
         )}
-
       </div>
     </div>
   );
