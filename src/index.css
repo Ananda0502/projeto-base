@@ -62,4 +62,41 @@ border-color: #D9D9D9;}
 
 #sala{color: #ffffff;}
 
-
+.email-box {
+    background-color: #f0f4ff; /* azul clarinho */
+    border: 1px solid #4a90e2; /* borda azul */
+    padding: 10px 20px;
+    border-radius: 10px;
+    display: inline-block;
+    margin-top: 10px;
+    font-weight: 600;
+    color: #333;
+    font-size: 1.1rem;
+    box-shadow: 0 2px 8px rgba(74, 144, 226, 0.3);
+  }
+  
+  .admin-button-container {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center; /* centraliza o botão horizontalmente */
+  }
+  
+  /* Botão de Administração */
+.admin-button {
+    background: linear-gradient(135deg, #002147, #A9A9A9); /* Oxford Blue → Gray */
+    border: none;
+    padding: 12px 30px;
+    border-radius: 30px;
+    color: white;
+    font-weight: 700;
+    font-size: 1.1rem;
+    cursor: pointer;
+    box-shadow: 0 8px 15px rgba(0, 33, 71, 0.3);
+    transition: background 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .admin-button:hover {
+    background: linear-gradient(135deg, #A9A9A9, #002147); /* Gray → Oxford Blue */
+    box-shadow: 0 10px 20px rgba(0, 33, 71, 0.5);
+  }
+  
