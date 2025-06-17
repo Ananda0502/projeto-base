@@ -1,10 +1,11 @@
 import { Routes, Route } from "react-router-dom";
 import App from "../templates/App/App";
 import Home from "../templates/Home/Home";
+import ListaTecnicos from '../templates/Home/ListaTecnicos';
 
 import ForgotPass from "../templates/Login/ForgotPass";
 import Login from "../templates/Login/Login";
-import Cadastro from "../templates/Login/Cadastro"; // Importação do componente Cadastro
+import Cadastro from "../templates/Login/Cadastro"; 
 
 import Ocorrencias from "../templates/Ocorrencias/Ocorrencias";
 
@@ -25,6 +26,7 @@ const AppRoutes = () => {
       <Routes>
         <Route path="/" element={<Cadastro />} /> 
         <Route path="/home" element={<Home />} />
+        <Route path="/tecnicos" element={<ListaTecnicos />} />
         <Route path="/login" element={<Login />} />
         <Route path="/cadastro" element={<Cadastro />} />
         <Route path="/forgotpass" element={<ForgotPass />} />

@@ -42,7 +42,7 @@ const Home = () => {
           <div className="admin-button-container mt-4 text-center">
             <button
               className="admin-button"
-              onClick={() => navigate("/painel-admin")}
+              onClick={() => navigate("/tecnicos")}
             >
               Painel de Administração
             </button>
