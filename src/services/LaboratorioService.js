@@ -1,6 +1,6 @@
 import http from '../common/http-common';
 
-const API_URL = "http://localhost:8080/laboratorio";
+const API_URL = "http://localhost:8080/localidade";
 
 // Método para buscar todos os laboratórios
 const getAllLaboratorios = () => {

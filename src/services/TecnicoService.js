@@ -1,8 +1,8 @@
 import axios from "axios";
 
-const API_URL = "http://localhost:8080/api/tecnicos"; // Corrigido para incluir /api
+const API_URL = "http://localhost:8080/usuario/save"; // Corrigido para incluir /api
 
-const cadastrarTecnico = (tecnico) => {
+export const cadastrarTecnico = (tecnico) => {
   return axios.post(API_URL, tecnico);
 };
 

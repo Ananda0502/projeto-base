@@ -3,12 +3,17 @@ import { useNavigate, Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import './Cadastro.css';
 import logo from '../../assets/images/system-logo_128_x_128.png';
-import TecnicoService from "../../services/TecnicoService";
+import { cadastrarTecnico } from "../../services/TecnicoService";
+
 
 function Cadastro() {
-  const [tecnico, setTecnico] = useState({
-    rmtecnico: "",
+  const [usuario, setUsuario] = useState({
+    nome: "",
+    rm: "",
+    email: "",
     senha: "",
+    nivelAcesso: "USER",
+    statusUsuario: "ATIVO"
   });
 
   const [errorMessage, setErrorMessage] = useState("");  // estado para mensagem de erro
@@ -17,32 +22,32 @@ function Cadastro() {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setTecnico({ ...tecnico, [name]: value });
+    setUsuario({ ...usuario, [name]: value });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!tecnico.rmtecnico || !tecnico.senha) {
+    // Validação dos campos obrigatórios
+    if (!usuario.nome || !usuario.rm || !usuario.email || !usuario.senha || !usuario.nivelAcesso || !usuario.statusUsuario) {
       setErrorMessage("Preencha todos os campos!");
       return;
     }
 
-    // Validação simples: o RM deve conter '@'
-    if (!tecnico.rmtecnico.includes("@")) {
-      setErrorMessage("Por favor, insira um RM válido contendo '@'.");
+    // Validação simples: email deve conter '@'
+    if (!usuario.email.includes("@")) {
+      setErrorMessage("Por favor, insira um e-mail válido contendo '@'.");
       return;
     }
 
     try {
-      await TecnicoService.cadastrarTecnico(tecnico);
-      sessionStorage.setItem("tecnico", JSON.stringify(tecnico));
-      alert("Cadastro de técnico realizado com sucesso!");
+      await cadastrarTecnico(usuario)
+      sessionStorage.setItem("usuario", JSON.stringify(usuario));
+      alert("Cadastro de usuário realizado com sucesso!");
       navigate("/Home");
     } catch (error) {
       if (error.response && error.response.status === 400) {
-        sessionStorage.setItem("tecnico", JSON.stringify(tecnico))//faz o site reconhecer o login 
-        setErrorMessage(error.response.data); // ex: "RM já cadastrado."
+        setErrorMessage(error.response.data);
       } else {
         setErrorMessage("Erro ao cadastrar. Tente novamente mais tarde.");
       }
@@ -57,13 +62,37 @@ function Cadastro() {
         </div>
         <form onSubmit={handleSubmit}>
           <div className="mb-3">
-            <label htmlFor="rmtecnico" className="form-label">RM:</label>
+            <label htmlFor="nome" className="form-label">Nome:</label>
             <input
               type="text"
               className="form-control"
-              name="rmtecnico"
-              id="rmtecnico"
-              value={tecnico.rmtecnico}
+              name="nome"
+              id="nome"
+              value={usuario.nome}
+              onChange={handleChange}
+              required
+            />
+          </div>
+          <div className="mb-3">
+            <label htmlFor="rm" className="form-label">RM:</label>
+            <input
+              type="text"
+              className="form-control"
+              name="rm"
+              id="rm"
+              value={usuario.rm}
+              onChange={handleChange}
+              required
+            />
+          </div>
+          <div className="mb-3">
+            <label htmlFor="email" className="form-label">E-mail:</label>
+            <input
+              type="email"
+              className="form-control"
+              name="email"
+              id="email"
+              value={usuario.email}
               onChange={handleChange}
               required
             />
@@ -75,10 +104,40 @@ function Cadastro() {
               className="form-control"
               name="senha"
               id="senha"
-              value={tecnico.senha}
+              value={usuario.senha}
               onChange={handleChange}
               required
             />
+          </div>
+          <div className="mb-3">
+            <label htmlFor="nivelAcesso" className="form-label">Nível de Acesso:</label>
+            <select
+              className="form-control"
+              name="nivelAcesso"
+              id="nivelAcesso"
+              value={usuario.nivelAcesso}
+              onChange={handleChange}
+              required
+            >
+              <option value="USER">Usuário</option>
+              <option value="ADMIN">Administrador</option>
+              <option value="TECNICO">Técnico</option>
+            </select>
+          </div>
+          <div className="mb-3">
+            <label htmlFor="statusUsuario" className="form-label">Status:</label>
+            <select
+              className="form-control"
+              name="statusUsuario"
+              id="statusUsuario"
+              value={usuario.statusUsuario}
+              onChange={handleChange}
+              required
+            >
+              <option value="ATIVO">Ativo</option>
+              <option value="INATIVO">Inativo</option>
+              <option value="TROCAR_SENHA">Trocar Senha</option>
+            </select>
           </div>
 
           {errorMessage && (
