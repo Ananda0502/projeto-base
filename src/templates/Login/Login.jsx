@@ -6,7 +6,8 @@ import TecnicoService from "../../services/TecnicoService";
 
 const Login = () => {
   const [form, setForm] = useState({
-    rmtecnico: "",
+    email: "",
+    rm: "",
     senha: "",
   });
 
@@ -21,34 +22,32 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setErrorMessage("");
-  
+
     try {
-      const response = await TecnicoService.loginTecnico(form.rmtecnico, form.senha);
-  
+      const response = await TecnicoService.loginTecnico(form.email, form.rm, form.senha);
+
       console.log("Resposta da API:", response); // Pra debug
-  
+
       if (response && Object.keys(response).length > 0) {
         sessionStorage.setItem("tecnico", JSON.stringify(response));
-        
-        if (response.rmtecnico === "adm@gmail.com") {
+
+        if (response.email === "adm@gmail.com") {
           localStorage.setItem("isAdmin", "1");
         } else {
           localStorage.setItem("isAdmin", "0");
         }
-      
+
         navigate("/home");
-      
+
       } else {
-        setErrorMessage("Login inválido. Verifique RM e senha.");
+        setErrorMessage("Login inválido. Verifique Email, RM e senha.");
       }
-      
+
     } catch (error) {
       console.error("Erro ao tentar login:", error);
-      setErrorMessage("Erro ao tentar logar. Verifique RM e senha.");
+      setErrorMessage("Erro ao tentar logar. Verifique Email, RM e senha.");
     }
   };
-  
-  
 
   return (
     <div className="container">
@@ -58,19 +57,31 @@ const Login = () => {
         </div>
 
         <div className="mb-3">
-          <label htmlFor="email" className="form-label mb-0 fw-bold" id="rm">RM:</label>
+          <label htmlFor="email" className="form-label mb-0 fw-bold" id="email">Email:</label>
           <input
             type="email"
             className="form-control text-center fw-medium shadow"
-            name="rmtecnico"
-            value={form.rmtecnico}
+            name="email"
+            value={form.email}
+            onChange={handleChange}
+            required
+          />
+        </div>
+
+        <div className="mb-3">
+          <label htmlFor="rm" className="form-label mb-0 fw-bold" id="rm">RM:</label>
+          <input
+            type="text"
+            className="form-control text-center fw-medium shadow"
+            name="rm"
+            value={form.rm}
             onChange={handleChange}
             required
           />
         </div>
 
         <div>
-          <label htmlFor="password" className="form-label mb-0 fw-bold" id="senha">Senha:</label>
+          <label htmlFor="senha" className="form-label mb-0 fw-bold" id="senha">Senha:</label>
           <input
             type="password"
             className="form-control text-center fw-medium shadow"
