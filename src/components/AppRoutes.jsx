@@ -20,6 +20,8 @@ import LaboratorioEditar from "../templates/Laboratorio/LaboratorioEditar";
 import LaboratorioNovo from "../templates/Laboratorio/LaboratorioNovo";
 import LaboratoriosLista from "../templates/Laboratorio/LaboratoriosLista";
 
+import EditarUsuario from "../templates/Home/EditarUsuario";
+
 const AppRoutes = () => {
   return (
     <div>
@@ -42,6 +44,9 @@ const AppRoutes = () => {
         <Route path="/laboratorionovo" element={<LaboratorioNovo />} />
         <Route path="/laboratorioeditar/:id" element={<LaboratorioEditar />} />
         <Route path="/ocorrencias" element={<Ocorrencias />} />
+
+        <Route path="/editar-usuario/:id" element={<EditarUsuario />} /> 
+        <Route path="/listar-usuarios" element={<ListaTecnicos />} />
       </Routes>
     </div>
   );
