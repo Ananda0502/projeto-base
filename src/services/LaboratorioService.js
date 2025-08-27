@@ -14,7 +14,6 @@ const getById = (id) => {
 
 // Salvar novo laboratório
 const saveLaboratorio = (laboratorio) => {
-    // laboratorio deve ter a estrutura { nome, andar, sala, ativo? }
     return http.mainInstance.post(API_URL, laboratorio);
 };
 
@@ -28,12 +27,18 @@ const deleteLaboratorio = (id) => {
     return http.mainInstance.delete(`${API_URL}/${id}`);
 };
 
+// Verificar duplicidade de laboratório pelo nome
+const verificarDuplicidade = (nome) => {
+    return http.mainInstance.get(`${API_URL}/verificar-duplicidade?nome=${encodeURIComponent(nome)}`);
+};
+
 const LaboratorioService = {
     getAllLaboratorios,
     getById,
     saveLaboratorio,
     update: updateLaboratorio,
     deleteLaboratorio,
+    verificarDuplicidade,
 };
 
 export default LaboratorioService;
