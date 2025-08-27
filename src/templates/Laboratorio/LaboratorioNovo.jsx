@@ -14,31 +14,34 @@ const LaboratorioNovo = () => {
 
     useEffect(() => {
         // Buscar todos os laboratórios ao carregar a página
-        LaboratorioService.getAllLaboratorios().then(
-            (response) => {
-                setLaboratorios(response.data);
-            }
-        ).catch((error) => {
-            console.log(error);
-        });
+        LaboratorioService.getAllLaboratorios()
+            .then(response => setLaboratorios(response.data))
+            .catch(error => console.error(error));
     }, []);
 
     const handleSubmit = async (event) => {
         event.preventDefault();
 
         // Verificar se já existe um laboratório com a mesma sala e andar
-        const laboratorioExistente = laboratorios.find(lab => lab.sala === sala && lab.andar === andar);
+        const laboratorioExistente = laboratorios.find(lab => {
+            // Ajuste para comparar pelo nome (exemplo "Sala 01 - 1º andar")
+            const nomeLab = `Sala ${lab.sala} - ${lab.andar}º andar`;
+            const nomeNovo = `Sala ${sala} - ${andar}º andar`;
+            return nomeLab === nomeNovo;
+        });
 
         if (laboratorioExistente) {
             alert("Já existe um laboratório cadastrado com essa sala e andar.");
             return;
         }
 
-        // Criação do novo laboratório
-        const novoLaboratorio = { sala, andar };
+        // Criação do novo laboratório - ajustando para o backend Localidade
+        const novoLaboratorio = {
+            nome: `Sala ${sala} - ${andar}º andar`,
+            statusLocal: "ATIVO"
+        };
 
         try {
-            // Enviar os dados ao backend
             await LaboratorioService.saveLaboratorio(novoLaboratorio);
             alert("Laboratório cadastrado com sucesso!");
             navigate("/laboratorioslista"); // Redirecionar para a lista de laboratórios
@@ -61,7 +64,13 @@ const LaboratorioNovo = () => {
                     <form className="row g-3" onSubmit={handleSubmit}>
                         <div className="col-md-2">
                             <label htmlFor="inputSala" className="form-label" id="sala">Escolha a Sala:</label>
-                            <select id="inputSala" className="form-select" value={sala} onChange={(e) => setSala(e.target.value)} required>
+                            <select
+                                id="inputSala"
+                                className="form-select"
+                                value={sala}
+                                onChange={(e) => setSala(e.target.value)}
+                                required
+                            >
                                 <option value="" disabled>Laboratórios</option>
                                 <option value="01">Sala 01</option>
                                 <option value="02">Sala 02</option>
@@ -69,10 +78,16 @@ const LaboratorioNovo = () => {
                                 <option value="04">Sala 04</option>
                             </select>
                         </div>
-                       
+
                         <div className="col-md-2">
                             <label htmlFor="inputAndar" className="form-label" id="andar">Escolha o Andar:</label>
-                            <select id="inputAndar" className="form-select" value={andar} onChange={(e) => setAndar(e.target.value)} required>
+                            <select
+                                id="inputAndar"
+                                className="form-select"
+                                value={andar}
+                                onChange={(e) => setAndar(e.target.value)}
+                                required
+                            >
                                 <option value="" disabled>Andares</option>
                                 <option value="1">1° andar</option>
                                 <option value="2">2° andar</option>
@@ -80,7 +95,7 @@ const LaboratorioNovo = () => {
                                 <option value="4">4° andar</option>
                             </select>
                         </div>
-                        
+
                         <div className="col-12">
                             <button type="submit" className="btn btn-primary">
                                 Cadastrar
