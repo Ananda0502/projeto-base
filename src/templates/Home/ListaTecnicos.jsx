@@ -4,13 +4,13 @@ import Sidebar from '../../components/Menu/Sidebar';
 import axios from 'axios';
 
 const ListaTecnicos = () => {
-  const [tecnicos, setTecnicos] = useState ([]);
+  const [tecnicos, setTecnicos] = useState([]);
 
   useEffect(() => {
     const fetchTecnicos = async () => {
       try {
         const res = await axios.get('http://localhost:8080/usuario/findAll');
-        console.log(res.data)
+        console.log(res.data);
         setTecnicos(res.data);
       } catch (err) {
         console.error("Erro ao buscar técnicos:", err);
@@ -18,6 +18,19 @@ const ListaTecnicos = () => {
     };
     fetchTecnicos();
   }, []);
+
+  // Função para excluir um técnico
+  const deleteTecnico = async (id) => {
+    try {
+      const response = await axios.delete(`http://localhost:8080/usuario/${id}`);
+      alert(response.data);
+      const updatedTecnicos = tecnicos.filter(tec => tec.id !== id);
+      setTecnicos(updatedTecnicos);
+    } catch (error) {
+      console.error("Erro ao excluir técnico:", error);
+      alert("Erro ao excluir técnico.");
+    }
+  };
 
   return (
     <div className="corpo d-flex">
@@ -31,24 +44,31 @@ const ListaTecnicos = () => {
               <th scope="col">Nome</th>
               <th scope="col">Email</th>
               <th scope="col">Especialidade</th>
+              <th scope="col">Ação</th> 
             </tr>
           </thead>
           <tbody>
-            {
-              tecnicos.length > 0 ? (
-                tecnicos.map((tec, idx) => (
-                  <tr key={idx}>
-                    <td>{tec.nome}</td>
-                    <td>{tec.email}</td>
-                    <td>{tec.especialidade}</td>
-                  </tr>
-                ))
-              ) : (
-                <tr>
-                  <td colSpan={3} className="text-center">Nada</td>
+            {tecnicos.length > 0 ? (
+              tecnicos.map((tec) => (
+                <tr key={tec.id}>
+                  <td>{tec.nome}</td>
+                  <td>{tec.email}</td>
+                  <td>{tec.especialidade}</td>
+                  <td>
+                    <button
+                      className="btn btn-danger"
+                      onClick={() => deleteTecnico(tec.id)}
+                    >
+                      Excluir
+                    </button>
+                  </td>
                 </tr>
-              )
-            }
+              ))
+            ) : (
+              <tr>
+                <td colSpan={4} className="text-center">Nenhum técnico encontrado.</td>
+              </tr>
+            )}
           </tbody>
         </table>
       </div>
