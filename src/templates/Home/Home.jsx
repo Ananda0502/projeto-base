@@ -8,7 +8,7 @@ import { FaUser } from "react-icons/fa";
 const Home = () => {
   const navigate = useNavigate(); 
   const usuarioLogado = JSON.parse(sessionStorage.getItem("tecnico"));
-  const isAdmin = usuarioLogado?.admin === true;
+  const isAdmin = usuarioLogado?.nivelAcesso == "ADMIN";
 
   useEffect(() => {
     if (!usuarioLogado) {

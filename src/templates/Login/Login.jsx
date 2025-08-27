@@ -7,7 +7,6 @@ import TecnicoService from "../../services/TecnicoService";
 const Login = () => {
   const [form, setForm] = useState({
     email: "",
-    rm: "",
     senha: "",
   });
 
@@ -63,18 +62,6 @@ const Login = () => {
             className="form-control text-center fw-medium shadow"
             name="email"
             value={form.email}
-            onChange={handleChange}
-            required
-          />
-        </div>
-
-        <div className="mb-3">
-          <label htmlFor="rm" className="form-label mb-0 fw-bold" id="rm">RM:</label>
-          <input
-            type="text"
-            className="form-control text-center fw-medium shadow"
-            name="rm"
-            value={form.rm}
             onChange={handleChange}
             required
           />
