@@ -22,29 +22,28 @@ const LaboratorioNovo = () => {
     const handleSubmit = async (event) => {
         event.preventDefault();
 
-        // Verificar se já existe um laboratório com a mesma sala e andar
-        const laboratorioExistente = laboratorios.find(lab => {
-            // Ajuste para comparar pelo nome (exemplo "Sala 01 - 1º andar")
-            const nomeLab = `Sala ${lab.sala} - ${lab.andar}º andar`;
-            const nomeNovo = `Sala ${sala} - ${andar}º andar`;
-            return nomeLab === nomeNovo;
-        });
+        // Criar nome completo no formato do backend
+        const nomeCompleto = `Sala ${sala} - ${andar}º andar`;
 
-        if (laboratorioExistente) {
-            alert("Já existe um laboratório cadastrado com essa sala e andar.");
-            return;
-        }
-
-        // Criação do novo laboratório - ajustando para o backend Localidade
-        const novoLaboratorio = {
-            nome: `Sala ${sala} - ${andar}º andar`,
-            statusLocal: "ATIVO"
-        };
-
+        // Verificar duplicidade via backend
         try {
+            const response = await LaboratorioService.verificarDuplicidade(nomeCompleto);
+
+            if (response.data === true) {
+                alert("Já existe um laboratório cadastrado com essa sala e andar.");
+                return;
+            }
+
+            // Criar objeto Localidade para o backend
+            const novoLaboratorio = {
+                nome: nomeCompleto,
+                statusLocal: "ATIVO"
+            };
+
             await LaboratorioService.saveLaboratorio(novoLaboratorio);
             alert("Laboratório cadastrado com sucesso!");
-            navigate("/laboratorioslista"); // Redirecionar para a lista de laboratórios
+            navigate("/laboratorioslista");
+
         } catch (error) {
             console.error("Erro ao cadastrar o laboratório:", error);
             alert("Erro ao cadastrar o laboratório!");
@@ -63,7 +62,7 @@ const LaboratorioNovo = () => {
                 <section className="m-2 p-2 shadow-lg">
                     <form className="row g-3" onSubmit={handleSubmit}>
                         <div className="col-md-2">
-                            <label htmlFor="inputSala" className="form-label" id="sala">Escolha a Sala:</label>
+                            <label htmlFor="inputSala" className="form-label">Escolha a Sala:</label>
                             <select
                                 id="inputSala"
                                 className="form-select"
@@ -80,7 +79,7 @@ const LaboratorioNovo = () => {
                         </div>
 
                         <div className="col-md-2">
-                            <label htmlFor="inputAndar" className="form-label" id="andar">Escolha o Andar:</label>
+                            <label htmlFor="inputAndar" className="form-label">Escolha o Andar:</label>
                             <select
                                 id="inputAndar"
                                 className="form-select"
