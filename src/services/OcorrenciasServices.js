@@ -1,6 +1,6 @@
 import http from '../common/http-common';
 
-const API_URL = "http://localhost:8080/ocorrencias";
+const API_URL = "http://localhost:8080/ocorrencia";
 
 const getAllOcorrencias = () => {
     return http.mainInstance.get(API_URL);
@@ -11,7 +11,7 @@ const getById = (id) => {
 };
 
 const saveOcorrencia = (ocorrencia) => {
-    return http.mainInstance.post(`${API_URL}/upload`, ocorrencia, {
+    return http.mainInstance.post(`${API_URL}/save`, ocorrencia, {
         headers: {
             "Content-Type": "application/json"
         }

@@ -4,17 +4,17 @@ const API_URL = "http://localhost:8080/localidade";
 
 // Buscar todos os laboratórios
 const getAllLaboratorios = () => {
-    return http.mainInstance.get(API_URL);
+    return http.mainInstance.get(`${API_URL}/findAll` );
 };
 
 // Buscar laboratório por ID
 const getById = (id) => {
-    return http.mainInstance.get(`${API_URL}/${id}`);
+    return http.mainInstance.get(`${API_URL}/findById/${id}`);
 };
 
 // Salvar novo laboratório
 const saveLaboratorio = (laboratorio) => {
-    return http.mainInstance.post(API_URL, laboratorio);
+    return http.mainInstance.post(`${API_URL}/save`, laboratorio);
 };
 
 // Atualizar laboratório

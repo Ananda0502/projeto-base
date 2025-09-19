@@ -27,12 +27,7 @@ const LaboratorioNovo = () => {
 
         // Verificar duplicidade via backend
         try {
-            const response = await LaboratorioService.verificarDuplicidade(nomeCompleto);
 
-            if (response.data === true) {
-                alert("Já existe um laboratório cadastrado com essa sala e andar.");
-                return;
-            }
 
             // Criar objeto Localidade para o backend
             const novoLaboratorio = {

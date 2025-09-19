@@ -6,11 +6,9 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import './Ocorrencias.css';
 
 const Ocorrencias = () => {
-  const [ocorrencia, setOcorrencia] = useState({
-    descricao: "",
-    patrimonio: "",
-    laboratorioId: ""
-  });
+  const [descricao, setDescricao] = useState('')
+  const [localidade, setLocalidade] = useState('')
+  const [patrimonio, setPatrimonio] = useState('')
 
   const [anexo, setAnexo] = useState(null);
   const [laboratorios, setLaboratorios] = useState([]);
@@ -27,9 +25,18 @@ const Ocorrencias = () => {
     fetchLaboratorios();
   }, []);
 
-  const handleChange = (e) => {
-    setOcorrencia({ ...ocorrencia, [e.target.name]: e.target.value });
-  };
+  const handleDescricao = (e) => {
+    setDescricao(e.target.value)
+  } 
+
+  const handleLocalidade = (e) => {
+    let value 
+    setLocalidade(e.target.value)
+  } 
+
+  const handlePatrimonio = (e) => {
+    setPatrimonio(e.target.value)
+  } 
 
   const handleFileChange = (e) => {
     setAnexo(e.target.files[0]);
@@ -38,20 +45,22 @@ const Ocorrencias = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const formData = new FormData();
-    formData.append("descricao", ocorrencia.descricao);
-    formData.append("patrimonio", ocorrencia.patrimonio);
-    formData.append("laboratorioId", ocorrencia.laboratorioId);
-    if (anexo) {
-      formData.append("anexo", anexo.name); // Salva apenas o nome do arquivo
+    let localidade_encontrada = await LaboratorioService.getById(localidade)
+    localidade_encontrada = localidade_encontrada.data
+    console.log(localidade_encontrada)
+    const formData = {
+      descricao,
+      localidade_encontrada
     }
 
     try {
       await OcorrenciasService.saveOcorrencia(formData);
       alert("Ocorrência cadastrada com sucesso!");
+      
     } catch (error) {
       console.error("Erro ao cadastrar ocorrência", error);
       alert("Erro ao cadastrar ocorrência.");
+      
     }
   };
 
@@ -68,42 +77,23 @@ const Ocorrencias = () => {
           <textarea
             className="form-control"
             name="descricao"
-            value={ocorrencia.descricao}
-            onChange={handleChange}
+            value={descricao}
+            onChange={(e) => handleDescricao(e)}
           ></textarea>
-        </div>
-        <div className="mb-3">
-          <label className="form-label">Anexo (imagem)</label>
-          <input
-            type="file"
-            className="form-control"
-            onChange={handleFileChange}
-            accept="image/*"
-          />
-        </div>
-        <div className="mb-3">
-          <label className="form-label">Patrimônio</label>
-          <input
-            type="number"
-            className="form-control"
-            name="patrimonio"
-            value={ocorrencia.patrimonio}
-            onChange={handleChange}
-          />
         </div>
         <div className="mb-3">
           <label className="form-label">Laboratório</label>
           <select
             className="form-control"
             name="laboratorioId"
-            value={ocorrencia.laboratorioId}
-            onChange={handleChange}
+            value={localidade}
+            onChange={(e) => handleLocalidade(e)}            
             required
           >
-            <option value="">Selecione o Laboratório</option>
+            <option value="" selected disabled>Selecione o Laboratório</option>
             {laboratorios.map((lab) => (
               <option key={lab.id} value={lab.id}>
-                {lab.sala} - {lab.andar}
+                {lab.nome}
               </option>
             ))}
           </select>
