@@ -40,7 +40,7 @@ const LaboratorioEditar = () => {
 
         LaboratorioService.verificarDuplicidade(nomeCompleto)
             .then((response) => {
-                if (response.data === true) {
+                if (response.data === true && nomeCompleto !== laboratorio.nome) {
                     alert("Já existe um laboratório com esta sala e andar!");
                 } else {
                     // Atualizar objeto com nome correto antes de enviar
