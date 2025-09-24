@@ -10,7 +10,7 @@ import Cadastro from "../templates/Login/Cadastro";
 import Ocorrencias from "../templates/Ocorrencias/Ocorrencias";
 
 import OcorrenciaPendente from "../templates/Pendentes/OcorrenciaPendente";
-import PendenteLer from "../templates/Pendentes/PendenteLer";
+import PendenteVer from "../templates/Pendentes/PendenteVer";
 
 import OcorrenciaSolucionada from "../templates/Solucionadas/OcorrenciaSolucionada";
 import SolucionadaLer from "../templates/Solucionadas/SolucionadaLer";
@@ -34,7 +34,7 @@ const AppRoutes = () => {
         <Route path="/forgotpass" element={<ForgotPass />} />
 
         <Route path="/ocorrenciaPendente" element={<OcorrenciaPendente />} />
-        <Route path="/pendenteLer" element={<PendenteLer />} />
+        <Route path="/pendentever/:id" element={<PendenteVer />} />
 
         <Route path="/ocorrenciaSolucionada" element={<OcorrenciaSolucionada />} />
         <Route path="/solucionadaLer" element={<SolucionadaLer />} />

@@ -13,13 +13,21 @@ const loginTecnico = async (email, rm, senha) => {
     rm: rm,
     senha: senha,
   });
+  if (response.data) {
+    localStorage.setItem("user", JSON.stringify(response.data));
+  }
 
   return response.data;
+};
+
+const getCurrentUser = () => {
+    return JSON.parse(localStorage.getItem("user"));
 };
 
 const TecnicoService = {
   cadastrarTecnico,
   loginTecnico,
+  getCurrentUser,
 };
 
 export default TecnicoService;

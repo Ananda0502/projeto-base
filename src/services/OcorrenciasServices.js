@@ -1,9 +1,8 @@
 import http from '../common/http-common';
-
-const API_URL = "http://localhost:8080/ocorrencia";
+const API_URL = "/ocorrencia";
 
 const getAllOcorrencias = () => {
-    return http.mainInstance.get(API_URL);
+    return http.mainInstance.get(API_URL + "/findAll");
 };
 
 const getById = (id) => {
@@ -18,6 +17,25 @@ const saveOcorrencia = (ocorrencia) => {
     });
 };
 
+const create = (data) => {
+  return http.mainInstance.post(API_URL + "/save", {
+    descricao: data.descricao,
+    usuario: { id: data.usuario.id },
+    localidade: { id: data.localidade }
+  });
+};
+
+/*
+const create = (data) => {
+  const formData = new FormData();
+
+  formData.append('usuario.id', data.usuario);
+  formData.append('localidade.id', data.localidade);
+  formData.append('descricao', data.descricao);
+
+  return http.mainInstance.post(API_URL + "/save", formData);
+};
+*/
 const updateOcorrencia = (id, ocorrencia) => {
     return http.mainInstance.put(`${API_URL}/${id}`, ocorrencia);
 };
@@ -30,6 +48,7 @@ const OcorrenciasService = {
     getAllOcorrencias,
     getById,
     saveOcorrencia,
+    create,
     update: updateOcorrencia,
     deleteOcorrencia
 };

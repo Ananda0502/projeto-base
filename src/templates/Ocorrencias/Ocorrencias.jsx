@@ -1,107 +1,111 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import Header from "../../components/Header/Header"
+import Sidebar from '../../components/Menu/Sidebar'
+import logo from '../../assets/images/home.png'
 import OcorrenciasService from "../../services/OcorrenciasServices.js";
 import LaboratorioService from "../../services/LaboratorioService.js";
 import "bootstrap/dist/css/bootstrap.min.css";
 import './Ocorrencias.css';
+import TecnicoService from "../../services/TecnicoService.js";
+
 
 const Ocorrencias = () => {
-  const [descricao, setDescricao] = useState('')
-  const [localidade, setLocalidade] = useState('')
-  const [patrimonio, setPatrimonio] = useState('')
 
-  const [anexo, setAnexo] = useState(null);
-  const [laboratorios, setLaboratorios] = useState([]);
+  const usuario = TecnicoService.getCurrentUser();
+
+  const [formData, setFormData] = useState({
+    descricao: '',
+    localidade: null,
+    usuario: usuario
+  });
+
+  const [localidades, setLocalidades] = useState([]);
 
   useEffect(() => {
-    const fetchLaboratorios = async () => {
+    const fetchLocalidades = async () => {
       try {
         const response = await LaboratorioService.getAllLaboratorios();
-        setLaboratorios(response.data);
+        setLocalidades(response.data);
       } catch (error) {
         console.error("Erro ao carregar laboratórios", error);
       }
     };
-    fetchLaboratorios();
+    fetchLocalidades();
   }, []);
 
-  const handleDescricao = (e) => {
-    setDescricao(e.target.value)
-  } 
+  const handleChange = (e) => {
+    const name = e.target.name;
+    const value = e.target.value;
+    setFormData(formData => ({ ...formData, [name]: value }));
+  }
 
-  const handleLocalidade = (e) => {
-    let value 
-    setLocalidade(e.target.value)
-  } 
 
-  const handlePatrimonio = (e) => {
-    setPatrimonio(e.target.value)
-  } 
-
-  const handleFileChange = (e) => {
-    setAnexo(e.target.files[0]);
-  };
-
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
 
-    let localidade_encontrada = await LaboratorioService.getById(localidade)
-    localidade_encontrada = localidade_encontrada.data
-    console.log(localidade_encontrada)
-    const formData = {
-      descricao,
-      localidade_encontrada
-    }
+    OcorrenciasService.create(formData).then(
+      (response) => {
+        console.log("Resposta do backend:", response);
+        alert("Ocorrência cadastrada com sucesso!");
+      }, (error) => {
+        const resMessage =
+          (error.response &&
+            error.response.data &&
+            error.response.data.message) ||
+          error.message ||
+          error.toString();
 
-    try {
-      await OcorrenciasService.saveOcorrencia(formData);
-      alert("Ocorrência cadastrada com sucesso!");
-      
-    } catch (error) {
-      console.error("Erro ao cadastrar ocorrência", error);
-      alert("Erro ao cadastrar ocorrência.");
-      
-    }
-  };
+        console.error("Resposta do erro:", error.response?.data);
+        alert("Erro ao cadastrar ocorrência.");
+      }
+    )
+  }
 
   return (
-    <div className="container mt-5" id="ocorrencia">
-      <div className="d-flex justify-content-between align-items-center">
-        <Link to="/home" className="btn btn-secondary btn-sm">Voltar</Link>
-        <h2 className="mx-auto">Cadastro de Ocorrências</h2>
-      </div>
+    <div className="corpo d-flex">
+      <Sidebar />
+      <div className="p-3 w-100">
+        <Header
+          goto={'/home'}
+          title={'Pendentes'}
+          logo={logo}
+        />
+        <section className="p-2 m-2 shadow-lg">
 
-      <form onSubmit={handleSubmit} className="p-4 border rounded bg-light" encType="multipart/form-data">
-        <div className="mb-3">
-          <label className="form-label">Descrição</label>
-          <textarea
-            className="form-control"
-            name="descricao"
-            value={descricao}
-            onChange={(e) => handleDescricao(e)}
-          ></textarea>
-        </div>
-        <div className="mb-3">
-          <label className="form-label">Laboratório</label>
-          <select
-            className="form-control"
-            name="laboratorioId"
-            value={localidade}
-            onChange={(e) => handleLocalidade(e)}            
-            required
-          >
-            <option value="" selected disabled>Selecione o Laboratório</option>
-            {laboratorios.map((lab) => (
-              <option key={lab.id} value={lab.id}>
-                {lab.nome}
-              </option>
-            ))}
-          </select>
-        </div>
-        <button type="submit" className="btn btn-primary w-100">
-          Cadastrar Ocorrência
-        </button>
-      </form>
+          <form onSubmit={handleSubmit} className="p-4 border rounded bg-light" encType="multipart/form-data">
+            <div className="mb-3">
+              <label className="form-label">Descrição</label>
+              <textarea
+                className="form-control"
+                name="descricao"
+                value={formData.descricao || ""}
+                onChange={handleChange}
+              ></textarea>
+            </div>
+            <div className="mb-3">
+              <label className="form-label">Laboratório</label>
+              <select defaultValue={0}
+                className="form-control"
+                name="localidade"
+                value={formData.localidade}
+                onChange={(e) => handleChange(e)}
+                required
+              >
+                <option value={0} disabled>Selecione o Laboratório</option>
+                {localidades?.map((localidade) => (
+                  <option key={localidade.id} value={localidade.id}>
+                    {localidade.nome}
+                  </option>
+                ))}
+              </select>
+            </div>
+            <button type="submit" className="btn btn-primary w-100">
+              Cadastrar Ocorrência
+            </button>
+          </form>
+        </section>
+      </div>
     </div>
   );
 };
