@@ -25,9 +25,14 @@ const LaboratorioNovo = () => {
         // Criar nome completo no formato do backend
         const nomeCompleto = `Sala ${sala} - ${andar}º andar`;
 
-        // Verificar duplicidade via backend
         try {
+            // Verificar duplicidade via backend
+            const response = await LaboratorioService.verificarDuplicidade(nomeCompleto);
 
+            if (response.data === true) {
+                alert("Já existe um laboratório com esta sala e andar!");
+                return; // Não deixa cadastrar
+            }
 
             // Criar objeto Localidade para o backend
             const novoLaboratorio = {
