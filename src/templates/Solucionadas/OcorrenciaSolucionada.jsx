@@ -1,81 +1,58 @@
-import { Link, useNavigate } from "react-router-dom"
-import Header from "../../components/Header/Header"
-import Sidebar from '../../components/Menu/Sidebar'
-import logo from '../../assets/images/home.png'
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import Header from "../../components/Header/Header";
+import Sidebar from '../../components/Menu/Sidebar';
+import logo from '../../assets/images/home.png';
+import OcorrenciasService from "../../services/OcorrenciasServices";
 
 const OcorrenciaSolucionada = () => {
-
+    const [ocorrencias, setOcorrencias] = useState([]);
     const navigate = useNavigate();
 
-    const goTo = () => {
-        navigate('/solucionadaLer')
-    }
+    useEffect(() => {
+        OcorrenciasService.getSolucionadas()
+            .then(res => setOcorrencias(res.data))
+            .catch(err => console.log(err));
+    }, []);
 
-    const getId = (id) => {
-        console.log("ID:", id);
-    }
     return (
-        <div className=" corpo d-flex">
+        <div className="corpo d-flex">
             <Sidebar />
             <div className="p-3 w-100">
-                <Header
-                    goto={'/home'}
-                    title={' Solucionadas'}
-                    logo={logo}
-                />
-
-                
+                <Header goto={'/home'} title={'Solucionadas'} logo={logo} />
                 <section className="p-2 m-2 shadow-lg">
-
                     <div className="table-wrapper">
-                    <table className="table table-striped table-hover">
+                        <table className="table table-striped table-hover">
                             <thead>
                                 <tr>
-                                    <th scope="col">ID</th>
-                                    <th scope="col">Data</th>
-                                    <th scope="col">Manutenção</th>
-                                    <th scope="col">Hora</th>
-                                    <th scope="col">Visualizar </th>
+                                    <th>ID</th>
+                                    <th>Data</th>
+                                    <th>Descrição</th>
+                                    <th>Localidade</th>
+                                    <th>Status</th>
+                                    <th>Visualizar</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td scope="row">1</td>
-                                    <td>10/09/2024</td>
-                                    <td>11/10/2024</td>
-                                    <td>09:12</td>
-                                    <td>
-                                        <button type="button" onClick={() => goTo()}
-                                                className="btn btn-sm btn-warning">
-                                            <i className="bi bi-envelope-open me-2"></i>Abrir
-                                        </button>
-                                    </td>
-
-                                </tr>
+                                {ocorrencias.map(o => (
+                                    <tr key={o.id}>
+                                        <td>{o.id}</td>
+                                        <td>{o.dataOcorrencia}</td>
+                                        <td>{o.descricao}</td>
+                                        <td>{o.localidade?.nome}</td>
+                                        <td>{o.statusOcorrencia}</td>
+                                        <td>
+                                            <button className="btn btn-warning btn-sm" onClick={() => navigate(`/solucionadaler/${o.id}`)}>Abrir</button>
+                                        </td>
+                                    </tr>
+                                ))}
                             </tbody>
-                            <tbody>
-                               <tr>
-                                   <td scope="row">2</td>
-                                   <td>05/10/2024</td>
-                                   <td>10/10/2024</td>
-                                   <td> 16:45</td>
-                                   <td>
-                                       <button type="button" onClick={() => goTo()}
-                                               className="btn btn-sm btn-warning">
-                                           <i className="bi bi-envelope-open me-2"></i>Abrir
-                                       </button>
-                                   </td>
-
-                               </tr>
-                           </tbody>
                         </table>
                     </div>
-
-
                 </section>
             </div>
         </div>
-    )
-}
+    );
+};
 
-export default OcorrenciaSolucionada
+export default OcorrenciaSolucionada;

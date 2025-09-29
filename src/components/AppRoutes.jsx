@@ -26,6 +26,7 @@ const AppRoutes = () => {
   return (
     <div>
       <Routes>
+        {/* Login e Cadastro */}
         <Route path="/" element={<Cadastro />} /> 
         <Route path="/home" element={<Home />} />
         <Route path="/tecnicos" element={<ListaTecnicos />} />
@@ -33,18 +34,21 @@ const AppRoutes = () => {
         <Route path="/cadastro" element={<Cadastro />} />
         <Route path="/forgotpass" element={<ForgotPass />} />
 
+        {/* Ocorrências */}
         <Route path="/ocorrenciaPendente" element={<OcorrenciaPendente />} />
         <Route path="/pendentever/:id" element={<PendenteVer />} />
 
         <Route path="/ocorrenciaSolucionada" element={<OcorrenciaSolucionada />} />
-        <Route path="/solucionadaLer" element={<SolucionadaLer />} />
+        <Route path="/solucionadaLer/:id" element={<SolucionadaLer />} />
 
+        {/* Laboratórios */}
         <Route path="/laboratorio" element={<Laboratorio />} />
         <Route path="/laboratorioslista" element={<LaboratoriosLista />} />
         <Route path="/laboratorionovo" element={<LaboratorioNovo />} />
         <Route path="/laboratorioeditar/:id" element={<LaboratorioEditar />} />
-        <Route path="/ocorrencias" element={<Ocorrencias />} />
 
+        {/* Outras páginas */}
+        <Route path="/ocorrencias" element={<Ocorrencias />} />
         <Route path="/editar-usuario/:id" element={<EditarUsuario />} /> 
         <Route path="/listar-usuarios" element={<ListaTecnicos />} />
       </Routes>
