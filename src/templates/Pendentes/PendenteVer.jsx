@@ -4,6 +4,7 @@ import Sidebar from '../../components/Menu/Sidebar';
 import logo from '../../assets/images/home.png';
 import { useRef, useState, useEffect } from "react";
 import OcorrenciasService from "../../services/OcorrenciasServices";
+import LaboratorioService from "../../services/LaboratorioService"; // Importado
 
 const PendenteVer = () => {
     const { id } = useParams();
@@ -20,43 +21,89 @@ const PendenteVer = () => {
     };
 
     const [ocorrencia, setOcorrencia] = useState(objectState);
+    const [descricaoEditavel, setDescricaoEditavel] = useState("");
+    const [localidades, setLocalidades] = useState([]); // Estado para lista de laboratórios
+    const [localidadeEditavelId, setLocalidadeEditavelId] = useState(0); // Estado para ID do lab editável
+
 
     useEffect(() => {
-        if (_dbRecords.current) {
+        // 1. Carregar Ocorrência
+        if (_dbRecords.current && id) {
             OcorrenciasService.getById(id)
                 .then(response => {
-                    setOcorrencia(response.data);
+                    // CORRIGIDO: Garantido 'setOcorrencia' (com um 'o')
+                    setOcorrencia(response.data); 
+                    setDescricaoEditavel(response.data.descricao);
+                    setLocalidadeEditavelId(response.data.localidade?.id || 0); // Inicializa com o ID atual
                 })
                 .catch(e => console.log(e));
         }
+
+        // 2. Carregar Localidades
+        const fetchLocalidades = async () => {
+            try {
+                const response = await LaboratorioService.getAllLaboratorios();
+                setLocalidades(response.data);
+            } catch (error) {
+                console.error("Erro ao carregar laboratórios", error);
+            }
+        };
+        fetchLocalidades();
+
         return () => {
             _dbRecords.current = false;
         };
     }, [id]);
 
+    // Manipulador de mudança para a textarea de descrição
+    const handleDescricaoChange = (e) => {
+        setDescricaoEditavel(e.target.value);
+    }
+    
+    // Manipulador de mudança para o select de laboratório
+    const handleLocalidadeChange = (e) => {
+        setLocalidadeEditavelId(parseInt(e.target.value));
+    }
+
     // Marcar como solucionada
     const handleMarcarComoSolucionada = () => {
-        OcorrenciasService.update(ocorrencia.id, { ...ocorrencia, statusOcorrencia: "SOLUCIONADA" })
-            .then(() => {
-                alert("Ocorrência marcada como solucionada!");
-                navigate("/ocorrenciaSolucionada");
-            })
-            .catch(error => {
-                console.error("Erro ao marcar como solucionada:", error);
-                alert("Erro ao marcar como solucionada.");
-            });
+        if (window.confirm("Tem certeza que deseja marcar esta ocorrência como SOLUCIONADA?")) {
+            OcorrenciasService.marcarComoSolucionada(ocorrencia.id)
+                .then(() => {
+                    alert("Ocorrência marcada como solucionada!");
+                    navigate("/ocorrenciaSolucionada");
+                })
+                .catch(error => {
+                    console.error("Erro ao marcar como solucionada:", error);
+                    alert("Erro ao marcar como solucionada.");
+                });
+        }
     };
 
-    // Atualizar ocorrência
+    // Atualizar ocorrência (REQUISITO: Alterar Descrição e Laboratório)
     const handleUpdate = () => {
+        if (!descricaoEditavel.trim()) {
+            alert("A descrição não pode estar vazia.");
+            return;
+        }
+        if (localidadeEditavelId === 0) {
+            alert("Selecione um laboratório válido.");
+            return;
+        }
+
         const updatedOcorrencia = {
-            ...ocorrencia,
-            descricao: document.getElementById("inputTexto").value
+            id: ocorrencia.id,
+            descricao: descricaoEditavel,
+            // Envia o novo ID da localidade
+            localidade: { id: localidadeEditavelId }, 
+            // Mantém o ID do usuário original
+            usuario: { id: ocorrencia.usuario?.id }
         };
 
         OcorrenciasService.update(ocorrencia.id, updatedOcorrencia)
             .then(() => {
                 alert("Ocorrência atualizada com sucesso!");
+                // Opcional: navegar de volta ou recarregar a tela
                 navigate("/ocorrenciaPendente");
             })
             .catch(error => {
@@ -65,20 +112,28 @@ const PendenteVer = () => {
             });
     };
 
-    // Excluir ocorrência
-    const handleDelete = () => {
-        if (window.confirm("Deseja realmente excluir esta ocorrência?")) {
-            OcorrenciasService.deleteOcorrencia(ocorrencia.id)
-                .then(() => {
-                    alert("Ocorrência excluída com sucesso!");
-                    navigate("/ocorrenciaPendente");
-                })
-                .catch(error => {
-                    console.error("Erro ao excluir ocorrência:", error);
-                    alert("Erro ao excluir ocorrência.");
-                });
+    // Função auxiliar para formatar a data
+    const formatDate = (dateString) => {
+        if (!dateString) return '';
+        try {
+            const date = new Date(dateString);
+            return date.toLocaleDateString('pt-BR', {
+                year: 'numeric',
+                month: '2-digit',
+                day: '2-digit',
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit'
+            });
+        } catch (e) {
+            return dateString;
         }
     };
+
+
+    // REMOVIDA: A função handleDelete foi removida.
+    // O botão de exclusão não será mais renderizado no retorno.
+
 
     return (
         <div className="corpo d-flex">
@@ -86,57 +141,93 @@ const PendenteVer = () => {
             <div className="p-3 w-100">
                 <Header
                     goto={'/ocorrenciaPendente'}
-                    title={'Informações da Ocorrência'}
+                    title={'Detalhes da Ocorrência Pendente'}
                     logo={logo}
                 />
-                <section className="fundo m-2 p-2 shadow-lg">
-                    <form className="mx-5 p-2 border">
-                        <div className="row my-3 g-1">
-                            <label htmlFor="inputID" className="col-md-1 col-form-label">ID:</label>
-                            <div className="col-md-2">
-                                <input type="text" className="form-control" id="inputID" value={ocorrencia.id || ""} readOnly />
-                            </div>
-
-                            <label htmlFor="inputData" className="col-md-2 col-form-label">Data:</label>
-                            <div className="col-md-3">
-                                <input type="text" className="form-control" id="inputData" value={ocorrencia.dataOcorrencia || ""} readOnly />
-                            </div>
-
-                            <label htmlFor="inputStatus" className="col-md-2 col-form-label">Status:</label>
-                            <div className="col-md-2">
-                                <input type="text" className="form-control" id="inputStatus" value={ocorrencia.statusOcorrencia || ""} readOnly />
-                            </div>
+                
+                <section className="container mt-4">
+                    <div className="card shadow-lg">
+                        {/* Cabeçalho do Card (Status e ID) */}
+                        <div className="card-header bg-dark text-white">
+                            **Ocorrência #{ocorrencia.id} - Status: {ocorrencia.statusOcorrencia}**
                         </div>
+                        {/* Corpo do Card (Formulário) */}
+                        <div className="card-body bg-secondary-subtle">
+                            <form className="p-3"> 
+                                
+                                {/* Linha 1: ID, Data e RM (Campos de leitura) */}
+                                <div className="row g-3 mb-4">
+                                    <div className="col-md-4">
+                                        <label className="form-label fw-bold">ID:</label>
+                                        <input type="text" className="form-control" value={ocorrencia.id || ""} readOnly />
+                                    </div>
+                                    <div className="col-md-4">
+                                        <label className="form-label fw-bold">Data de Abertura:</label>
+                                        <input type="text" className="form-control" value={formatDate(ocorrencia.dataOcorrencia) || ""} readOnly />
+                                    </div>
+                                    <div className="col-md-4">
+                                        <label className="form-label fw-bold">RM do Solicitante:</label>
+                                        <input type="text" className="form-control" value={ocorrencia.usuario?.rm || ""} readOnly />
+                                    </div>
+                                </div>
+                                
+                                {/* Linha 2: Laboratório (Editável) */}
+                                <div className="row g-3 mb-4">
+                                    <div className="col-12">
+                                        <label className="form-label fw-bold">Laboratório (Localidade):</label>
+                                        <select 
+                                            className="form-control" 
+                                            value={localidadeEditavelId}
+                                            onChange={handleLocalidadeChange}
+                                        >
+                                            <option value={0} disabled>Selecione o Laboratório</option>
+                                            {localidades.map((localidade) => (
+                                                <option key={localidade.id} value={localidade.id}>
+                                                    {localidade.nome}
+                                                </option>
+                                            ))}
+                                        </select>
+                                    </div>
+                                </div>
 
-                        <div className="row mb-3">
-                            <label htmlFor="inputRM" className="col-md-2 col-form-label">RM:</label>
-                            <div className="col-md-10">
-                                <input type="text" className="form-control" id="inputRM" value={ocorrencia.usuario?.rm || ""} readOnly />
-                            </div>
-                        </div>
+                                {/* Linha 3: Descrição (Editável) */}
+                                <div className="row g-3 mb-5">
+                                    <div className="col-12">
+                                        <label className="form-label fw-bold">Descrição (Edição):</label>
+                                        <textarea
+                                            rows={6}
+                                            className="form-control"
+                                            value={descricaoEditavel || ""}
+                                            onChange={handleDescricaoChange}
+                                        />
+                                    </div>
+                                </div>
 
-                        <div className="col-md-12 mb-3">
-                            <label htmlFor="inputTexto" className="form-label">Descrição:</label>
-                            <textarea
-                                rows={5}
-                                className="form-control"
-                                id="inputTexto"
-                                defaultValue={ocorrencia.descricao || ""}
-                            />
+                                {/* Bloco de Ações: Alterar e Solucionada */}
+                                <div className="d-flex justify-content-center gap-3">
+                                    {/* Botão de Alterar (Primário - Azul) - com btn-sm */}
+                                    <button 
+                                        type="button" 
+                                        className="btn btn-primary btn-sm" 
+                                        onClick={handleUpdate}
+                                    >
+                                        <i className="bi bi-pencil-square me-2"></i> Alterar
+                                    </button>
+                                    
+                                    {/* Botão Solucionar (Sucesso - Verde) - com btn-sm e texto completo */}
+                                    <button 
+                                        type="button" 
+                                        className="btn btn-success btn-sm" 
+                                        onClick={handleMarcarComoSolucionada}
+                                    >
+                                        <i className="bi bi-check-circle me-2"></i> Marcar como Solucionada
+                                    </button>
+                                    
+                                    {/* O BOTÃO EXCLUIR FOI REMOVIDO DAQUI */}
+                                </div>
+                            </form>
                         </div>
-
-                        <div className="col-12 d-flex justify-content-around">
-                            <button type="button" className="btn btn-primary" onClick={handleUpdate}>
-                                Alterar
-                            </button>
-                            <button type="button" className="btn btn-danger" onClick={handleDelete}>
-                                Excluir
-                            </button>
-                            <button type="button" className="btn btn-success" onClick={handleMarcarComoSolucionada}>
-                                Marcar como solucionada
-                            </button>
-                        </div>
-                    </form>
+                    </div>
                 </section>
             </div>
         </div>
