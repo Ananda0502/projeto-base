@@ -4,7 +4,7 @@ import Sidebar from '../../components/Menu/Sidebar';
 import logo from '../../assets/images/home.png';
 import { useRef, useState, useEffect } from "react";
 import OcorrenciasService from "../../services/OcorrenciasServices";
-import LaboratorioService from "../../services/LaboratorioService"; // Importado
+import LaboratorioService from "../../services/LaboratorioService"; 
 
 const PendenteVer = () => {
     const { id } = useParams();
@@ -22,8 +22,8 @@ const PendenteVer = () => {
 
     const [ocorrencia, setOcorrencia] = useState(objectState);
     const [descricaoEditavel, setDescricaoEditavel] = useState("");
-    const [localidades, setLocalidades] = useState([]); // Estado para lista de laboratórios
-    const [localidadeEditavelId, setLocalidadeEditavelId] = useState(0); // Estado para ID do lab editável
+    const [localidades, setLocalidades] = useState([]);
+    const [localidadeEditavelId, setLocalidadeEditavelId] = useState(0);
 
 
     useEffect(() => {
@@ -31,10 +31,9 @@ const PendenteVer = () => {
         if (_dbRecords.current && id) {
             OcorrenciasService.getById(id)
                 .then(response => {
-                    // CORRIGIDO: Garantido 'setOcorrencia' (com um 'o')
                     setOcorrencia(response.data); 
                     setDescricaoEditavel(response.data.descricao);
-                    setLocalidadeEditavelId(response.data.localidade?.id || 0); // Inicializa com o ID atual
+                    setLocalidadeEditavelId(response.data.localidade?.id || 0); 
                 })
                 .catch(e => console.log(e));
         }
@@ -80,7 +79,7 @@ const PendenteVer = () => {
         }
     };
 
-    // Atualizar ocorrência (REQUISITO: Alterar Descrição e Laboratório)
+    // Atualizar ocorrência (CORRIGIDO PARA ENVIAR O OBJETO COMPLETO)
     const handleUpdate = () => {
         if (!descricaoEditavel.trim()) {
             alert("A descrição não pode estar vazia.");
@@ -91,22 +90,23 @@ const PendenteVer = () => {
             return;
         }
 
+        // COPIA TODOS OS DADOS DA OCORRÊNCIA EXISTENTE
         const updatedOcorrencia = {
-            id: ocorrencia.id,
+            ...ocorrencia, 
             descricao: descricaoEditavel,
-            // Envia o novo ID da localidade
-            localidade: { id: localidadeEditavelId }, 
-            // Mantém o ID do usuário original
-            usuario: { id: ocorrencia.usuario?.id }
+            // Sobrescreve a localidade com o ID selecionado
+            localidade: { id: localidadeEditavelId }
+            // Os campos 'dataOcorrencia', 'statusOcorrencia' e 'usuario' 
+            // já estão incluídos pelo '...ocorrencia'
         };
 
         OcorrenciasService.update(ocorrencia.id, updatedOcorrencia)
             .then(() => {
                 alert("Ocorrência atualizada com sucesso!");
-                // Opcional: navegar de volta ou recarregar a tela
                 navigate("/ocorrenciaPendente");
             })
             .catch(error => {
+                // Se ainda ocorrer um erro 500, a causa é no backend
                 console.error("Erro ao atualizar ocorrência:", error);
                 alert("Erro ao atualizar ocorrência.");
             });
@@ -129,10 +129,6 @@ const PendenteVer = () => {
             return dateString;
         }
     };
-
-
-    // REMOVIDA: A função handleDelete foi removida.
-    // O botão de exclusão não será mais renderizado no retorno.
 
 
     return (
@@ -223,7 +219,6 @@ const PendenteVer = () => {
                                         <i className="bi bi-check-circle me-2"></i> Marcar como Solucionada
                                     </button>
                                     
-                                    {/* O BOTÃO EXCLUIR FOI REMOVIDO DAQUI */}
                                 </div>
                             </form>
                         </div>
