@@ -32,7 +32,7 @@ const EditarUsuario = () => {
     e.preventDefault();
     try {
       const response = await axios.put(`http://localhost:8080/usuario/editar/${id}`, usuario);
-      alert("Cadastro atualizado com sucesso!");
+      alert("Usuário atualizado com sucesso!");
       navigate("/listar-usuarios"); 
     } catch (error) {
       console.error("Erro ao atualizar cadastro:", error);
