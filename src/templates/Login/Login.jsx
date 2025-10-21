@@ -87,14 +87,16 @@ const Login = () => {
 
         <div className="d-flex justify-content-around mb-3 mt-2">
           <button
-            className="btn btn-warning fw-medium shadow"
+            className="btn btn-warning"
+            id= "cancelar-login"
             type="button"
             onClick={() => navigate("/")}
           >
             Cancelar
           </button>
           <button
-            className="btn btn-success fw-medium shadow"
+            className="btn btn-success"
+            id="entrar-login"
             type="submit"
           >
             Entrar

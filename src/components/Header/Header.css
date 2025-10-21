@@ -1,1 +1,12 @@
-colocar background do header e importar
+#titulo{
+    color: white;
+}
+
+#botaovoltar{
+    background-color: aliceblue;
+    border-color: aliceblue;
+}
+
+#botaovoltar:hover{
+    background-color: grey;
+}

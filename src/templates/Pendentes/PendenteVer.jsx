@@ -5,6 +5,8 @@ import logo from '../../assets/images/home.png';
 import { useRef, useState, useEffect } from "react";
 import OcorrenciasService from "../../services/OcorrenciasServices";
 import LaboratorioService from "../../services/LaboratorioService"; 
+// Certifique-se de importar o CSS aqui
+import './PendenteVer.css'; 
 
 const PendenteVer = () => {
     const { id } = useParams();
@@ -201,19 +203,21 @@ const PendenteVer = () => {
 
                                 {/* Bloco de Ações: Alterar e Solucionada */}
                                 <div className="d-flex justify-content-center gap-3">
-                                    {/* Botão de Alterar (Primário - Azul) - com btn-sm */}
+                                    {/* Botão de Alterar (Primário - Azul) */}
                                     <button 
                                         type="button" 
-                                        className="btn btn-primary btn-sm" 
+                                        // CLASSE PADRÃO: btn btn-primary
+                                        className="btn btn-primary" 
                                         onClick={handleUpdate}
                                     >
                                         <i className="bi bi-pencil-square me-2"></i> Alterar
                                     </button>
                                     
-                                    {/* Botão Solucionar (Sucesso - Verde) - com btn-sm e texto completo */}
+                                    {/* Botão Solucionar (Sucesso - Verde) */}
                                     <button 
                                         type="button" 
-                                        className="btn btn-success btn-sm" 
+                                        // CLASSE PADRÃO: btn btn-success
+                                        className="btn btn-success" 
                                         onClick={handleMarcarComoSolucionada}
                                     >
                                         <i className="bi bi-check-circle me-2"></i> Marcar como Solucionada

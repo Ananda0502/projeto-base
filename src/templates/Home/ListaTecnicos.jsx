@@ -4,6 +4,7 @@ import Sidebar from '../../components/Menu/Sidebar';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom'; // Para navegação
 
+
 const ListaUsuarios = () => {
   const [usuarios, setUsuarios] = useState([]);
   const navigate = useNavigate(); // Instancia o hook de navegação

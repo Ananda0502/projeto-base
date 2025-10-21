@@ -1,0 +1,72 @@
+/* ======================================= */
+/* ARQUIVO: PendenteVer.css */
+/* Tema: Ajuste de Tamanho (Equilíbrio dos Botões) */
+/* ======================================= */
+
+/* --- AJUSTE DE TAMANHO E PADDING DOS BOTÕES --- */
+/* O seletor garante que as regras se apliquem APENAS aos botões
+   dentro do container 'd-flex justify-content-center gap-3'. */
+.d-flex.justify-content-center.gap-3 .btn {
+    /* Define um padding maior e mais equilibrado para ambos os botões */
+    padding: 10px 20px !important; 
+    
+    /* Garante um tamanho de fonte legível e uniforme */
+    font-size: 1rem !important;
+    
+    /* Peso da fonte para dar destaque, mas sem ser muito pesado */
+    font-weight: 600; 
+    
+    /* Previne que o texto do botão quebre em múltiplas linhas */
+    white-space: nowrap; 
+    
+    /* Transições e bordas para um visual mais moderno (opcional) */
+    border-radius: 8px !important;
+    transition: all 0.2s ease-in-out;
+}
+
+/* --- EFEITO DE HOVER/DESTAQUE (Elegante) --- */
+.d-flex.justify-content-center.gap-3 .btn:hover {
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    transform: translateY(-1px); /* Leve efeito de "subir" */
+}
+
+/* ------------------------------------------------ */
+/* --- MELHORIAS VISUAIS NO CARD (Coerência) --- */
+/* ------------------------------------------------ */
+
+/* Card (para melhor visual) */
+.card {
+    border: none;
+    border-radius: 12px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1); 
+}
+
+/* Cabeçalho do Card (Para usar a cor da sua marca) */
+.card-header {
+    background-color: #0B112B !important; /* Cor da sua marca no topo */
+    color: #FFFFFF !important;
+    font-weight: 700;
+    font-size: 1.2rem;
+    padding: 15px 20px;
+    border-top-left-radius: 12px !important;
+    border-top-right-radius: 12px !important;
+}
+
+/* Corpo do Card (Fundo Branco para Legibilidade) */
+.card-body {
+    background-color: #FFFFFF !important; 
+    padding: 30px;
+    border-bottom-left-radius: 12px !important;
+    border-bottom-right-radius: 12px !important;
+}
+
+/* Labels e Inputs (Para consistência com outros formulários) */
+.form-label {
+    color: #0B112B; /* Labels na cor da marca */
+    font-weight: 700 !important;
+}
+
+.form-control:focus {
+    border-color: #0B112B; /* Foco na cor da marca */
+    box-shadow: 0 0 0 0.25rem rgba(11, 17, 43, 0.2);
+}

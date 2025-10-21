@@ -10,55 +10,59 @@
     padding: 20px;
     text-align: center;
     color: #ffffff;
-  }
-  
-  /* Título */
-  .cadastro-form h2 {
+}
+ 
+/* Título */
+.cadastro-form h2 {
     margin-bottom: 20px;
     font-weight: bold;
-  }
-  
-  /* Inputs */
-  .cadastro-form .form-control {
+}
+ 
+/* Inputs (Todos os inputs e selects com a classe .form-control) */
+.cadastro-form .form-control {
     background-color: #ffffff;
-    color:#000;
+    color: #000; /* Cor de texto padrão preto para a maioria dos inputs */
     border: none;
     border-radius: 5px;
     text-align: center;
     font-weight: 500;
     margin-bottom: 15px;
     box-shadow: rgba(100, 100, 111, 0.4) 0px 2px 8px 0px;
-  }
-  
-  /* Label dos campos */
-  .cadastro-form .form-label {
+}
+
+/* CORREÇÃO AQUI: Garante que o texto (os bullets) no campo de senha seja preto */
+.cadastro-form input[type="password"].form-control,
+.cadastro-form input[type="password"].form-control:focus {
+    color: #000000 !important; /* Força a cor preta para o campo de senha */
+}
+ 
+/* Label dos campos */
+.cadastro-form .form-label {
     color: #fff;
     font-weight: bold;
     margin-bottom: 5px;
     display: block;
     text-align: left;
-  }
-  
-  /* Botão cadastrar */
-  .cadastro-form .btn-entrar {
+}
+ 
+/* Botão cadastrar */
+.cadastro-form .btn-entrar {
     background-color: #d9d9d9; 
     border: none;
     font-weight: 600;
     box-shadow: rgba(100, 100, 111, 0.5) 0px 2px 8px 0px;
     transition: background-color 0.3s ease;
     width: 100%;
-  }
-  
-  .cadastro-logo {
+}
+ 
+.cadastro-logo {
     margin: 10px 0 40px 0;
     text-align: center;
-  }
-  
-  .cadastro-logo img {
+}
+ 
+.cadastro-logo img {
     border-radius: 20px;
     box-shadow: rgba(100, 100, 111, 0.7) 0px 7px 29px 0px;
-  }
-  
-  #senha{color:black}
-
+}
  
+/* A regra original #senha foi removida e substituída pela regra acima mais específica. */
